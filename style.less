@@ -1,0 +1,516 @@
+/*
+	Theme Name: Coki
+	Theme URI: http://ejner.galaz.me/
+	Description: Diseño para blog personal
+	Version: 1.0.0-beta-3
+	Author: Ejner Galaz
+	Author URI: http://galaz.me/
+*/
+
+// Colores
+@gris: #9E9E9E;
+@link: #2196F3;
+@status: #00BCD4;
+@quote: #607D8B;
+@image: #FF5722;
+@gallery: #E91E63;
+@audio: #3F51B5;
+@video: #f44336;
+@aside: #4CAF50;
+@chat: #9C27B0;
+@standard: #009688;
+@sticky: #FFC107;
+@pagecolor: #FF9800;
+@results: #795548;
+
+// Mixins
+.background(@color) {
+    background-color: @color;
+}
+
+/* Valores Generales */
+@import url('https://fonts.googleapis.com/css?family=Nunito|Nunito+Sans|Ubuntu+Mono');
+
+html {
+    font-size: 17px;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.02rem;
+    line-height: 1.5rem;
+    word-wrap: break-word;
+    color: #232323;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.wrap {
+    width: 85%;
+    margin: 0 auto;
+}
+
+pre,
+code,
+kbd {
+    font-family: 'Ubuntu Mono', monospace;
+    white-space: pre-wrap;
+}
+
+pre,
+code {
+    background-color: @gris;
+    color: #fff;
+    padding: 0.2rem;
+}
+
+.floatleft {
+    display: block;
+    float: left;
+}
+
+.floatright {
+    display: block;
+    float: right;
+}
+
+.clear:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+main {
+    margin-top: 1rem;
+}
+
+a {
+	text-decoration: none;
+	color: #2980b9;
+	transition: color .3s linear;
+
+    &:hover {
+        color: #2c3e50;
+    }
+
+    img.alignright {
+        float: right;
+        margin: 0.5rem 0 1.17rem 1.17rem;
+    }
+
+    img.alignnone {
+        margin: 0.5rem 1.17rem 1.17rem 0;
+    }
+
+    img.alignleft {
+        float: left;
+        margin: 0.5rem 1.17rem 1.17rem 0;
+    }
+
+    img.aligncenter {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.alignnone {
+    margin: 0.5rem 1.17rem 1.17rem 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 0.5rem auto 0.5rem auto;
+}
+
+.alignright {
+    float: right;
+    margin: 0.5rem 0 1.17rem 1.17rem;
+}
+
+.alignleft {
+    float: left;
+    margin: 0.5rem 1.17rem 1.17rem 0;
+}
+
+.wp-caption {
+    background: #fff;
+    border: 1px solid @gris;
+    max-width: 96%;
+    padding: 5px 3px 10px;
+    text-align: center;
+
+    &.alignnone {
+        margin: 0.5rem 1.17rem 1.17rem 0;
+    }
+
+    &.alignleft {
+        margin: 0.5rem 1.17rem 1.17rem 0;
+    }
+
+    &.alignright {
+        margin: 0.5rem 0 1.17rem 1.17rem;
+    }
+
+    img {
+        border: 0 none;
+        height: auto;
+        margin: 0;
+        max-width: 98.5%;
+        padding: 0;
+        width: auto;
+    }
+
+    p.wp-caption-text {
+        font-size: 0.65rem;
+        line-height: 1rem;
+        margin: 0;
+        padding: 0 0.4rem 0.5rem;
+    }
+} 
+
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    white-space: nowrap;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    
+    &:focus {
+        background-color: #f1f1f1;
+        border-radius: 3px;
+        box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+        clip: auto !important;
+        color: #21759b;
+        display: block;
+        font-size: 14px;
+        font-size: 0.875rem;
+        font-weight: bold;
+        height: auto;
+        left: 5px;
+        line-height: normal;
+        padding: 15px 23px 14px;
+        text-decoration: none;
+        top: 5px;
+        width: auto;
+        z-index: 100000;
+    }
+}
+
+/* Cabecera */
+header {
+    margin-top: 0.5rem;
+    
+    img.avatar {
+        width: 7rem;
+        height: 7rem;
+        border-radius: 7rem;
+        background-color: @gris;
+    }
+
+    .menu ul {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 3rem;
+
+        li {
+            display: inline-block;
+
+            a {
+                padding: 0.5rem;
+            }
+
+            ul {
+                display: none;
+            }
+        }
+    }
+}
+
+/* Articulos */
+article {
+    padding: 1rem;
+    position: relative;
+    width: 85%;
+    float: right;
+    margin: 1rem 0;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    h2 {    
+        .title-post {
+            text-decoration: none;
+            color: #131313;
+            font-size: 3rem;
+            transition: color .3s linear;
+        }
+
+        a:hover {
+            color: @gris;
+        }
+    }
+
+    .details ul {
+    padding: 0;
+    list-style-type: none;
+
+        li {
+            display: inline-block;
+            padding: 0 1rem;
+        }
+    }
+
+    i.type {
+        display: block;
+        position: absolute;
+        padding: 1rem;
+        font-size: 3rem;
+        top: 1.4rem;
+        left: -6rem;
+        border-radius: 4rem;
+        color: #fff;
+        background-color: @gris;
+    }
+
+    .embed-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        max-width: 100%;
+
+        iframe,
+        object,
+        embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    blockquote {
+        border-left: 0.5rem solid @quote;
+        padding: 0.2rem 1rem;
+        background: #ECEFF1;
+        margin-top: 0.5rem;
+    }
+
+    &.format-quote {
+        h2 {
+            display: none;
+        }
+
+        .content-post {
+            border-left: 0.5rem solid @quote;
+            padding: 0.2rem 1rem;
+            background: #ECEFF1;
+            margin-top: 0.5rem;
+        }
+
+        i.type {
+            .background(@quote);
+        }
+    }
+
+    &.format-status {
+        h2 {
+            display: none;
+        }
+
+        .content-post {
+            font-size: 2rem;
+            font-family: 'Nunito Sans', sans-serif;
+        }
+
+        i.type {
+            .background(@status);
+        }
+    }
+
+    &.format-link {
+        i.type {
+            .background(@link);
+        }
+
+        h2 a:hover {
+            color: @link;
+        }
+    }
+
+    &.format-image {
+        i.type {
+            .background(@image);
+        }
+
+        h2 a:hover {
+            color: @image;
+        }
+    }
+
+    &.format-gallery {
+        i.type {
+            .background(@gallery);
+        }
+
+        h2 a:hover {
+            color: @gallery;
+        }
+    }
+
+    &.format-audio {
+        i.type {
+            .background(@audio);
+        }
+
+        h2 a:hover {
+            color: @audio;
+        }
+    }
+
+    &.format-video {
+        i.type {
+            .background(@video);
+        }
+
+        h2 a:hover {
+            color: @video;
+        }
+    }
+
+    &.format-aside {
+        i.type {
+            .background(@aside);
+        }
+
+        h2 a:hover {
+            color: @aside;
+        }
+    }
+
+    &.format-chat {
+        i.type {
+            .background(@chat);
+        }
+
+        h2 a:hover {
+            color: @chat;
+        }
+
+        .chat-row {
+            padding: 0.5rem 0;
+
+            .chat-author {
+                font-size: 1.2rem;
+                color: @chat;
+            }
+
+            .chat-text {
+                position: relative;
+                background-color: @chat;
+                color: #fff;
+                border-radius: 0.4rem;
+                padding: .6rem;
+            }
+
+            &.chat-speaker-2 {
+                .chat-text {
+                    background-color: spin(@chat, 20);
+                }
+            }
+
+            &.chat-speaker-3 {
+                .chat-text {
+                    background-color: spin(@chat, 40);
+                }
+            }
+
+            &.chat-speaker-4 {
+                .chat-text {
+                    background-color: spin(@chat, 60);
+                }
+            }
+
+            &.chat-speaker-5 {
+                .chat-text {
+                    background-color: spin(@chat, 80);
+                }
+            }
+
+            &.chat-speaker-6 {
+                .chat-text {
+                    background-color: spin(@chat, 100);
+                }
+            }
+        }
+    }
+
+    &.format-standard {
+        i.type {
+            .background(@standard);
+        }
+
+        h2 a:hover {
+            color: @standard;
+        }
+    }
+
+    &.sticky {
+        i.type {
+             .background(@sticky);
+        }
+
+        h2 a:hover {
+            color: @sticky;
+        }
+    }
+
+    i.type {
+        &.coki-page {
+            .background(@pagecolor);
+        }
+
+        &.coki-results {
+            .background(@results);
+        }
+    }
+}
+
+/* Paginación */
+.pagination {
+    text-align: center;
+    display: block;
+
+    .page-numbers {
+        font-size: 2rem;
+        text-decoration: none;
+        margin: 0 1rem;
+        padding: 0.2rem 1rem;
+        color: @gris;
+        transition: color 0.3s linear, background-color 0.3s linear;
+    }
+
+    a.page-numbers:hover,
+    .current {
+        color: #fff;
+        background-color: @gris;
+    }
+}
+
+/* Pie de Página */
+.copyright {
+  text-align: center;
+}

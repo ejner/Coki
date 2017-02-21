@@ -1,0 +1,376 @@
+/*
+	Theme Name: Coki
+	Theme URI: http://ejner.galaz.me/
+	Description: Diseño para blog personal
+	Version: 1.0.0-beta-3
+	Author: Ejner Galaz
+	Author URI: http://galaz.me/
+*/
+/* Valores Generales */
+@import url('https://fonts.googleapis.com/css?family=Nunito|Nunito+Sans|Ubuntu+Mono');
+html {
+  font-size: 17px;
+}
+body {
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: 0.02rem;
+  line-height: 1.5rem;
+  word-wrap: break-word;
+  color: #232323;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Nunito Sans', sans-serif;
+}
+.wrap {
+  width: 85%;
+  margin: 0 auto;
+}
+pre,
+code,
+kbd {
+  font-family: 'Ubuntu Mono', monospace;
+  white-space: pre-wrap;
+}
+pre,
+code {
+  background-color: #9E9E9E;
+  color: #fff;
+  padding: 0.2rem;
+}
+.floatleft {
+  display: block;
+  float: left;
+}
+.floatright {
+  display: block;
+  float: right;
+}
+.clear:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+main {
+  margin-top: 1rem;
+}
+a {
+  text-decoration: none;
+  color: #2980b9;
+  transition: color .3s linear;
+}
+a:hover {
+  color: #2c3e50;
+}
+a img.alignright {
+  float: right;
+  margin: 0.5rem 0 1.17rem 1.17rem;
+}
+a img.alignnone {
+  margin: 0.5rem 1.17rem 1.17rem 0;
+}
+a img.alignleft {
+  float: left;
+  margin: 0.5rem 1.17rem 1.17rem 0;
+}
+a img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.alignnone {
+  margin: 0.5rem 1.17rem 1.17rem 0;
+}
+.aligncenter,
+div.aligncenter {
+  display: block;
+  margin: 0.5rem auto 0.5rem auto;
+}
+.alignright {
+  float: right;
+  margin: 0.5rem 0 1.17rem 1.17rem;
+}
+.alignleft {
+  float: left;
+  margin: 0.5rem 1.17rem 1.17rem 0;
+}
+.wp-caption {
+  background: #fff;
+  border: 1px solid #9E9E9E;
+  max-width: 96%;
+  padding: 5px 3px 10px;
+  text-align: center;
+}
+.wp-caption.alignnone {
+  margin: 0.5rem 1.17rem 1.17rem 0;
+}
+.wp-caption.alignleft {
+  margin: 0.5rem 1.17rem 1.17rem 0;
+}
+.wp-caption.alignright {
+  margin: 0.5rem 0 1.17rem 1.17rem;
+}
+.wp-caption img {
+  border: 0 none;
+  height: auto;
+  margin: 0;
+  max-width: 98.5%;
+  padding: 0;
+  width: auto;
+}
+.wp-caption p.wp-caption-text {
+  font-size: 0.65rem;
+  line-height: 1rem;
+  margin: 0;
+  padding: 0 0.4rem 0.5rem;
+}
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  white-space: nowrap;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+}
+/* Cabecera */
+header {
+  margin-top: 0.5rem;
+}
+header img.avatar {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 7rem;
+  background-color: #9E9E9E;
+}
+header .menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 3rem;
+}
+header .menu ul li {
+  display: inline-block;
+}
+header .menu ul li a {
+  padding: 0.5rem;
+}
+header .menu ul li ul {
+  display: none;
+}
+/* Articulos */
+article {
+  padding: 1rem;
+  position: relative;
+  width: 85%;
+  float: right;
+  margin: 1rem 0;
+}
+article img {
+  max-width: 100%;
+  height: auto;
+}
+article h2 .title-post {
+  text-decoration: none;
+  color: #131313;
+  font-size: 3rem;
+  transition: color .3s linear;
+}
+article h2 a:hover {
+  color: #9E9E9E;
+}
+article .details ul {
+  padding: 0;
+  list-style-type: none;
+}
+article .details ul li {
+  display: inline-block;
+  padding: 0 1rem;
+}
+article i.type {
+  display: block;
+  position: absolute;
+  padding: 1rem;
+  font-size: 3rem;
+  top: 1.4rem;
+  left: -6rem;
+  border-radius: 4rem;
+  color: #fff;
+  background-color: #9E9E9E;
+}
+article .embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+article .embed-container iframe,
+article .embed-container object,
+article .embed-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+article blockquote {
+  border-left: 0.5rem solid #607D8B;
+  padding: 0.2rem 1rem;
+  background: #ECEFF1;
+  margin-top: 0.5rem;
+}
+article.format-quote h2 {
+  display: none;
+}
+article.format-quote .content-post {
+  border-left: 0.5rem solid #607D8B;
+  padding: 0.2rem 1rem;
+  background: #ECEFF1;
+  margin-top: 0.5rem;
+}
+article.format-quote i.type {
+  background-color: #607D8B;
+}
+article.format-status h2 {
+  display: none;
+}
+article.format-status .content-post {
+  font-size: 2rem;
+  font-family: 'Nunito Sans', sans-serif;
+}
+article.format-status i.type {
+  background-color: #00BCD4;
+}
+article.format-link i.type {
+  background-color: #2196F3;
+}
+article.format-link h2 a:hover {
+  color: #2196F3;
+}
+article.format-image i.type {
+  background-color: #FF5722;
+}
+article.format-image h2 a:hover {
+  color: #FF5722;
+}
+article.format-gallery i.type {
+  background-color: #E91E63;
+}
+article.format-gallery h2 a:hover {
+  color: #E91E63;
+}
+article.format-audio i.type {
+  background-color: #3F51B5;
+}
+article.format-audio h2 a:hover {
+  color: #3F51B5;
+}
+article.format-video i.type {
+  background-color: #f44336;
+}
+article.format-video h2 a:hover {
+  color: #f44336;
+}
+article.format-aside i.type {
+  background-color: #4CAF50;
+}
+article.format-aside h2 a:hover {
+  color: #4CAF50;
+}
+article.format-chat i.type {
+  background-color: #9C27B0;
+}
+article.format-chat h2 a:hover {
+  color: #9C27B0;
+}
+article.format-chat .chat-row {
+  padding: 0.5rem 0;
+}
+article.format-chat .chat-row .chat-author {
+  font-size: 1.2rem;
+  color: #9C27B0;
+}
+article.format-chat .chat-row .chat-text {
+  position: relative;
+  background-color: #9C27B0;
+  color: #fff;
+  border-radius: 0.4rem;
+  padding: .6rem;
+}
+article.format-chat .chat-row.chat-speaker-2 .chat-text {
+  background-color: #b02796;
+}
+article.format-chat .chat-row.chat-speaker-3 .chat-text {
+  background-color: #b02769;
+}
+article.format-chat .chat-row.chat-speaker-4 .chat-text {
+  background-color: #b0273b;
+}
+article.format-chat .chat-row.chat-speaker-5 .chat-text {
+  background-color: #b04127;
+}
+article.format-chat .chat-row.chat-speaker-6 .chat-text {
+  background-color: #b06e27;
+}
+article.format-standard i.type {
+  background-color: #009688;
+}
+article.format-standard h2 a:hover {
+  color: #009688;
+}
+article.sticky i.type {
+  background-color: #FFC107;
+}
+article.sticky h2 a:hover {
+  color: #FFC107;
+}
+article i.type.coki-page {
+  background-color: #FF9800;
+}
+article i.type.coki-results {
+  background-color: #795548;
+}
+/* Paginación */
+.pagination {
+  text-align: center;
+  display: block;
+}
+.pagination .page-numbers {
+  font-size: 2rem;
+  text-decoration: none;
+  margin: 0 1rem;
+  padding: 0.2rem 1rem;
+  color: #9E9E9E;
+  transition: color 0.3s linear, background-color 0.3s linear;
+}
+.pagination a.page-numbers:hover,
+.pagination .current {
+  color: #fff;
+  background-color: #9E9E9E;
+}
+/* Pie de Página */
+.copyright {
+  text-align: center;
+}

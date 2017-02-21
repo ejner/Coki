@@ -1,0 +1,107 @@
+@font-face {
+  font-family: 'Coki';
+  src:
+    url('fonts/Coki.ttf?3jmyk0') format('truetype'),
+    url('fonts/Coki.woff?3jmyk0') format('woff'),
+    url('fonts/Coki.svg?3jmyk0#Coki') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Coki' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.coki-time:before {
+  content: "\e191";
+}
+.coki-prev:before {
+  content: "\e5c4";
+}
+.coki-next:before {
+  content: "\e5c8";
+}
+.coki-top:before {
+  content: "\e5d8";
+}
+.coki-aside:before {
+  content: "\e85d";
+}
+.coki-author:before {
+  content: "\e85e";
+}
+.coki-attachment:before {
+  content: "\e2bc";
+}
+.coki-sticky:before {
+  content: "\e8e6";
+}
+.coki-image:before {
+  content: "\e412";
+}
+.coki-gallery:before {
+  content: "\e3b3";
+}
+.coki-standard:before {
+  content: "\e14f";
+}
+.coki-edit:before {
+  content: "\e254";
+}
+.coki-menu:before {
+  content: "\e3c7";
+}
+.coki-results:before {
+  content: "\e880";
+}
+.coki-private:before {
+  content: "\e90d";
+}
+.coki-quote:before {
+  content: "\e244";
+}
+.coki-page:before {
+  content: "\e24d";
+}
+.coki-permalink:before {
+  content: "\e157";
+}
+.coki-link:before {
+  content: "\e89e";
+}
+.coki-category:before {
+  content: "\e02f";
+}
+.coki-video:before {
+  content: "\e8da";
+}
+.coki-comment:before {
+  content: "\e253";
+}
+.coki-audio:before {
+  content: "\e405";
+}
+.coki-search:before {
+  content: "\e8b6";
+}
+.coki-chat:before {
+  content: "\e0d8";
+}
+.coki-tags:before {
+  content: "\e41d";
+}
+.coki-status:before {
+  content: "\e8dc";
+}
+
