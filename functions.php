@@ -12,8 +12,8 @@
  * @since 1.0.0
 **/
 function coki_version() {
-	$theme = wp_get_theme();
-	return $theme->get( 'Version' );
+	$data = file_get_contents( get_template_directory() . '/version.txt' );
+	return $data;
 }
 
 // Coki requiere WordPress 4.7+
