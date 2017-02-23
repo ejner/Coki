@@ -25,18 +25,16 @@ Además, es muy sencillo crear tu propio tema basandote en Coki. La única dific
 Coki es [software libre](https://www.gnu.org/philosophy/free-sw.es.html) y se distribuye bajo licencia [GNU General Public License v2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html). Goce la libertad (pero respete la licencia).
 
 ## Hoja de ruta
-### 1.0.0 - Beta 5 *(siguiente versión)*
-1. Mejorar el código para aprobar integraciones continuas
+### 1.0.0 - Beta 5 *(actualmente en desarrollo)*
+- [ ] 1. Mejorar el código para aprobar integraciones continuas
  * Es primera vez que incluyo un proyecto en servicios como Travis CI y es sorprendente la cantidad de errores que uno comete sin saberlo. La próxima beta tendrá énfasis en mejorar cada error que evito que Coki pasara los test de integración continua y, sobre todo, evitar cometerlos nuevamente.
+- [ ] 2. Añadir buscador
+- [ ] 3. Finalizar diseño de la paginación
+- [ ] 4. Finalizar diseño adaptable (tal vez lo cambie por "mobile first")
+- [ ] 5. Añadir comentarios (funciones y diseño)
+- [ ] 6. Añadir plantillas
 
 ### 1.0.0 - Beta 6
-1. Añadir buscador
-2. Finalizar diseño de la paginación
-3. Finalizar diseño adaptable (tal vez lo cambie por "mobile first")
-4. Añadir comentarios (funciones y diseño)
-5. Añadir plantillas
-
-### 1.0.0 - Beta 7
 1. Versión reservada para cosas maravillosas
 
 ### 1.0.0 - RC1
