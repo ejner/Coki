@@ -222,22 +222,20 @@ function coki_responsive_embed( $html ) {
 add_filter( 'embed_oembed_html', 'coki_responsive_embed', 10, 3 );
 add_filter( 'video_embed_html', 'coki_responsive_embed' );
 
-/*
+/**
  * function coki_time_published()
  * Si fue publicado hace menos de 24 horas, mostrará el tiempo, de lo contrario
  * mostrará la fecha cuando fue publicada.
  * @since 1.0.0
-*/
+ */
 function coki_time_published() {
 	$time = human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) );
 	$time_difference = current_time( 'timestamp' ) - get_the_time( 'U' );
+	$tag = 'class="date" datatime="' . get_the_time( 'Y-m-d\TH:i' ) . '"';
 	
-	if( $time_difference < 86400 ) {
-		$return = sprintf( __( 'Hace %s atras', 'coki' ), '<time class="date" datatime="' . get_the_time( 'Y-m-d\TH:i' ) . '">' . $time . '</time>' );
-	
+	if ( $time_difference < 86400 ) {
+		echo sprintf( __( '<time %1s>Hace %2$s atrás</time>', 'coki' ), $tag, $time );
 	} else {
-		$return = '<time class="date" datatime="' . get_the_time( 'Y-m-d\TH:i' ) . '">' . get_the_date() . ' ' . get_the_time() . '</time>';
+		echo sprintf( __( '<time %1$s>%2$s</time>', 'coki' ), $tag, get_the_date() );
 	}
-	
-	echo '<i class="coki-time"></i> ' . $return;
 }
