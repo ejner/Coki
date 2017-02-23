@@ -211,10 +211,12 @@ function coki_icon( $icon = '', $color = '' ) {
 }
 
 /**
- * function coki_responsive( string $html )
+ * Añade un contenedor a objetos insertados vía oEmbed para que, via CSS,
+ * se puedan aplicar reglas generales (como diseño adaptable)
  *
- * Añade un contenedor a objetos insertados vía oEmbed
  * @since 1.0.0
+ *
+ * @param string $html URL oEmbed
  */
 function coki_responsive_embed( $html ) {
 	return '<div class="embed-container">' . $html . '</div>';
@@ -223,19 +225,31 @@ add_filter( 'embed_oembed_html', 'coki_responsive_embed', 10, 3 );
 add_filter( 'video_embed_html', 'coki_responsive_embed' );
 
 /**
- * function coki_time_published()
- * Si fue publicado hace menos de 24 horas, mostrará el tiempo, de lo contrario
- * mostrará la fecha cuando fue publicada.
+ * Obtiene fecha de publicación. Si es menor a 24 horas, la muestra de forma
+ * humanizada, de lo contrario la muestra en el formato definido por el usuario
+ *
  * @since 1.0.0
  */
 function coki_time_published() {
 	$time = human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) );
 	$time_difference = current_time( 'timestamp' ) - get_the_time( 'U' );
-	$tag = 'class="date" datatime="' . get_the_time( 'Y-m-d\TH:i' ) . '"';
+	$tag = 'class="date" datatime="' . get_the_time( 'Y-m-d\TH:i:s' ) . '"';
 	
 	if ( $time_difference < 86400 ) {
 		echo sprintf( __( '<time %1s>Hace %2$s atrás</time>', 'coki' ), $tag, $time );
 	} else {
 		echo sprintf( __( '<time %1$s>%2$s</time>', 'coki' ), $tag, get_the_date() );
+	}
+}
+
+/**
+ * Devuelve primera URL de un post
+ *
+ * @since 1.0.0
+ */
+function coki_url_link() {
+	if ( has_post_format( 'link' ) ) {
+		preg_match( '<a[^>]*href="([^"]*)"[^>]*>', get_the_content(), $matches );
+		return esc_url_raw( $matches[1] );
 	}
 }

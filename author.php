@@ -28,7 +28,7 @@ get_header(); ?>
 
 			<?php if ( has_post_format( 'link' ) ) : ?>
 				<!-- post title -->
-				<h2><a href="<?php echo wp_strip_all_tags( get_the_content() ); ?>" class="title-post" target="_blank" title="Visitar '<?php the_title(); ?>'"><?php the_title(); ?></a></h2>
+				<h2><a href="<?php echo coki_url_link(); ?>" class="title-post" target="_blank" title="Visitar '<?php the_title(); ?>'"><?php the_title(); ?></a></h2>
 				<!-- /post title -->
 
 			<?php else : ?>
