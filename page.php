@@ -14,7 +14,7 @@ get_header(); ?>
 		<section>
 
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-	
+
 			<!-- article -->
 			<article id="page-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -63,8 +63,8 @@ get_header(); ?>
 			<!-- /article -->
 
 		<?php endif; ?>
-			
-        </section>
+
+		</section>
 		<!-- /section -->
 	</main>
 
