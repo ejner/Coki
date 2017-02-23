@@ -1,4 +1,13 @@
-			<!-- footer -->
+<?php
+/**
+ * Plantilla de pie de página
+ *
+ */
+
+?>
+			<div class="clear"></div>
+            
+            <!-- footer -->
 			<footer class="footer">
 
 				<!-- .copyright -->

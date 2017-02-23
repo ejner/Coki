@@ -1,6 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Plantilla de artículos
+ *
+ */
 
-	<main>
+get_header(); ?>
+
+	<main class="content single clear">
 		<!-- section -->
 		<section class="clear">
 
@@ -63,6 +69,7 @@
 				 <!-- .details -->
                 <div class="details">
                     <ul class="meta-details">
+                        <li><i class="coki-author"></i> <?php the_author_posts_link(); ?></li>
                         <li><i class="coki-category"></i> <?php the_category( ', ' ); ?></li>
                         <li><i class="coki-tags"></i> <?php the_tags( '' ); ?></li>
                     </ul>

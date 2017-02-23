@@ -2,7 +2,7 @@
 	Theme Name: Coki
 	Theme URI: http://ejner.galaz.me/
 	Description: Diseño para blog personal
-	Version: 1.0.0-beta-3
+	Version: 1.0.0-beta-4
 	Author: Ejner Galaz
 	Author URI: http://galaz.me/
 */
@@ -236,12 +236,61 @@ header {
     }
 }
 
+main.content {
+    width: 85%;
+    float: right;
+    position: relative;
+
+    i.type {
+        display: block;
+        position: absolute;
+        padding: 1rem;
+        font-size: 3rem;
+        top: 1.4rem;
+        left: -6rem;
+        border-radius: 4rem;
+        color: #fff;
+        background-color: @gris;
+    }
+
+    &.search {
+        i.type.unique {
+            .background(@results);
+        }
+    }
+}
+
+section {
+    h2 {
+        .title-page {
+            font-size: 3rem;
+            display: inline-block;
+            margin-bottom: 2.5rem;
+        }
+    }
+
+    i.type.unique {
+        top: 0;
+    }
+
+    &.small-post {
+        i.type:not(.unique) {
+            padding: 0.5rem;
+            font-size: 1.9rem;
+            left: -3rem;
+            top: 1.9rem;
+        }
+
+        h2 a {
+            font-size: 2rem;
+        }
+    }
+}
+
 /* Articulos */
 article {
     padding: 1rem;
     position: relative;
-    width: 85%;
-    float: right;
     margin: 1rem 0;
 
     img {
@@ -270,18 +319,6 @@ article {
             display: inline-block;
             padding: 0 1rem;
         }
-    }
-
-    i.type {
-        display: block;
-        position: absolute;
-        padding: 1rem;
-        font-size: 3rem;
-        top: 1.4rem;
-        left: -6rem;
-        border-radius: 4rem;
-        color: #fff;
-        background-color: @gris;
     }
 
     .embed-container {
@@ -427,30 +464,50 @@ article {
             }
 
             &.chat-speaker-2 {
+                .chat-author {
+                    color: spin(@chat, 20);
+                }
+
                 .chat-text {
                     background-color: spin(@chat, 20);
                 }
             }
 
             &.chat-speaker-3 {
+                .chat-author {
+                    color: spin(@chat, 40);
+                }
+
                 .chat-text {
                     background-color: spin(@chat, 40);
                 }
             }
 
             &.chat-speaker-4 {
+                .chat-author {
+                    color: spin(@chat, 60);
+                }
+
                 .chat-text {
                     background-color: spin(@chat, 60);
                 }
             }
 
             &.chat-speaker-5 {
+                .chat-author {
+                    color: spin(@chat, 80);
+                }
+
                 .chat-text {
                     background-color: spin(@chat, 80);
                 }
             }
 
             &.chat-speaker-6 {
+                .chat-author {
+                    color: spin(@chat, 100);
+                }
+
                 .chat-text {
                     background-color: spin(@chat, 100);
                 }
@@ -478,13 +535,13 @@ article {
         }
     }
 
-    i.type {
-        &.coki-page {
+    &.page {
+        i.type {
             .background(@pagecolor);
         }
 
-        &.coki-results {
-            .background(@results);
+        h2 a:hover {
+            color: @pagecolor;
         }
     }
 }

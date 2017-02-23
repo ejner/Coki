@@ -1,19 +1,21 @@
 <?php
-/*
+/**
  * Coki for WordPress 1.0.0
+ *
  * Diseño para blogs personales. Simple, moderno, potente y ligero.
  * Licenciado bajo GNU/GPL v3
  * Basado en HTML5 Blank por Todd Motto https://toddmotto.com/
-*/
+ */
 
-/*
+/**
  * function coki_version()
+ *
  * Devuelve la versión actual del theme
  * @since 1.0.0
-**/
+ */
 function coki_version() {
-	$data = file_get_contents( get_template_directory() . '/version.txt' );
-	return $data;
+    $theme = wp_get_theme();
+	return $theme->get( 'Version' );
 }
 
 // Coki requiere WordPress 4.7+
@@ -25,11 +27,12 @@ if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '<' ) ) {
 // Carga "format-chat.php"
 require get_template_directory() . '/inc/chat-format.php';
 
-/*
+/**
  * coki_setup()
+ *
  * Define parámetros básicos del theme y desactiva funciones del núcleo que no se usarán
  * @since 1.0.0
-*/
+ */
 function coki_setup() {
 	add_theme_support( 'menus' ); // Soporte de menús
 	add_theme_support( 'title-tag' ); // Título
@@ -57,15 +60,16 @@ function coki_setup() {
 }
 add_action( 'after_setup_theme', 'coki_setup' );
 
-/*
+/**
  * function coki_enqueue()
+ *
  * Carga estilos del theme
  * @since 1.0.0
-*/
+ */
 function coki_enqueue() {
 	
 	// Normalize 5.0.0
-    wp_register_style( 'normalize', get_template_directory_uri() . '/normalize.min.css', array(), '5.0.0', 'all' );
+    wp_register_style( 'normalize', get_template_directory_uri() . '/css/normalize.min.css', array(), '5.0.0', 'all' );
     wp_enqueue_style( 'normalize' );
 	
 	// Coki
@@ -73,7 +77,7 @@ function coki_enqueue() {
     wp_enqueue_style( 'coki' );
 	
 	// Coki Icons
-    wp_register_style('coki-font', get_template_directory_uri() . '/fonts.css', array(), coki_version(), 'all' );
+    wp_register_style('coki-font', get_template_directory_uri() . '/css/fonts.css', array(), coki_version(), 'all' );
     wp_enqueue_style('coki-font');
 	
 	// Modernizr 3.3.1
@@ -82,11 +86,12 @@ function coki_enqueue() {
 }
 add_action('wp_enqueue_scripts', 'coki_enqueue');
 
-/*
+/**
  * function coki_menu()
+ *
  * Crea menú personalizado
  * @since 1.0.0
-*/
+ */
 function coki_menu() {
 	wp_nav_menu(
 		array(
@@ -110,11 +115,12 @@ function coki_menu() {
 	);
 }
 
-/*
+/**
  * function coki_register_menu()
+ *
  * Registra menú personalizado
  * @since 1.0.0
-*/
+ */
 function coki_register_menu() {
     register_nav_menus(array( // Using array to specify more menus if needed
         'header-menu' => __('Header Menu', 'html5blank'), // Main Navigation
@@ -122,12 +128,13 @@ function coki_register_menu() {
 }
 add_action('init', 'coki_register_menu');
 
-/*
- * function coki_pagination( $prev, $next )
+/**
+ * function coki_pagination( string $prev, string $next )
+ *
  * Paginación en entradas, sin dependencias
  * @since 1.0.0
-*/
-function coki_pagination( $prev = '«', $next = '»' ) {
+ */
+function coki_pagination( $prev = '<i class="coki-prev"></i>', $next = '<i class="coki-next"></i>' ) {
     global $wp_query;
 	
     $big = 999999999;
@@ -143,11 +150,12 @@ function coki_pagination( $prev = '«', $next = '»' ) {
 }
 add_action( 'init', 'coki_pagination' );
 
-/*
- * function coki_slug_body( $classes )
- * Añade slug como clase en body (codigo creado por Starkers WordPress Theme)
+/**
+ * function coki_slug_body( string $classes )
+ *
+ * Añade slug como clase en body (creado por Starkers WordPress Theme)
  * @since 1.0.0
-*/
+ */
 function coki_slug_body( $classes ) {
     global $post;
 	
@@ -169,39 +177,45 @@ function coki_slug_body( $classes ) {
 }
 add_filter( 'body_class', 'coki_slug_body' );
 
-/*
- * function coki_icon( $icon )
+/**
+ * function coki_icon( string $icon, string $color )
+ *
  * Muestra icono según tipo de formato de entrada
  * @since 1.0.0
-*/
-function coki_icon( $icon = '' ) {
+ */
+function coki_icon( $icon = '', $color = '' ) {
 	
 	$format = array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' );
 	
 	if( $icon !== '' ) {
-		$return = $icon;
+		$format = $icon;
 	}
 	
 	elseif( is_sticky() ) {
-		$return = 'sticky';
+		$format = 'sticky';
 	}
 	
 	elseif( has_post_format( $format ) ) {
-		$return = get_post_format();
+		$format = get_post_format();
 	}
 	
 	else {
-		$return = 'standard';
+		$format = 'standard';
 	}
+
+    if( $color !== '' ) {
+        $color = ' style="background-color: ' . $color . '!important"';
+    }
 	
-	echo '<i class="type coki-' . $return . '"></i>';
+	echo '<i class="type coki-' . $format . '"' . $color . '></i>';
 }
 
-/*
- * function coki_responsive( $html )
+/**
+ * function coki_responsive( string $html )
+ *
  * Añade un contenedor a objetos insertados vía oEmbed
  * @since 1.0.0
-*/
+ */
 function coki_responsive_embed( $html ) {
 	return '<div class="embed-container">' . $html . '</div>';
 }

@@ -1,27 +1,25 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Plantilla de autores
+ *
+ */
 
-	<main>
+get_header(); ?>
+
+	<main class="content author clear">
 		<!-- section -->
-		<section class="clear small-post">
+		<section class="small-post">
 			
-		<?php if ( have_posts() ): ?>
-		
-			<h2><span class="title-page"><i class="coki-author"></i> <?php printf( __( 'Artículos publicados por %s', 'coki' ), get_the_author() ); ?></span></h2>
+		<?php if ( have_posts() ) : ?>
+
+            <?php coki_icon( 'author unique', '#CDDC39' ); ?>
+			<h2><span class="title-page"><?php printf( __( 'Artículos publicados por %s', 'coki' ), get_the_author() ); ?></span></h2>
 		
 		<?php while ( have_posts() ) : the_post(); ?>
 			<!-- article -->
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				
-			<?php if( has_post_thumbnail()) { ?>
-				<!-- .post thumbnail -->
-				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-					<?php the_post_thumbnail( 'single' ); ?>
-				</a>
-				<!-- /post thumbnail -->
-			<?php } ?>
-					
-
-				<!-- .type -->
+    			<!-- .type -->
 				<?php coki_icon(); ?>
 				<!-- /.type -->
 					

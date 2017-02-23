@@ -1,27 +1,25 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Plantilla de búsqueda
+ *
+ */
 
-	<main>
+get_header(); ?>
+
+	<main class="content search clear">
 		<!-- section -->
-		<section class="clear small-post">
+		<section class="small-post">
 			
 		<?php if ( have_posts() ): ?>
-		
-			<h2><span class="title-page"><i class="coki-results"></i> <?php printf( __( 'Resultados para "<em>%s</em>"', 'coki' ), get_search_query() ); ?></span></h2>
+
+            <?php coki_icon( 'results unique' ); ?>
+			<h2><span class="title-page"><?php printf( __( 'Resultados para "<em>%s</em>"', 'coki' ), get_search_query() ); ?></span></h2>
 		
 		<?php while ( have_posts() ) : the_post(); ?>
 	
 			<!-- article -->
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				
-			<?php if( has_post_thumbnail()) { ?>
-				<!-- .post thumbnail -->
-				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-					<?php the_post_thumbnail( 'single' ); ?>
-				</a>
-				<!-- /post thumbnail -->
-			<?php } ?>
-					
-
 				<!-- .type -->
 				<?php coki_icon(); ?>
 				<!-- /.type -->

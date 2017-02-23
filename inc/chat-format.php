@@ -1,11 +1,13 @@
 <?php
-/*
+/**
  * Da estilos a Formato de Entrada "Chat"
+ *
  * El código completo fue publicado por David Chandra en
  * http://justintadlock.com/archives/2012/08/21/post-formats-chat
  * La actual versión de Coki no realiza modificaciones significativas a este código.
+ *
  * @since 1.0.0
-*/
+ */
 
 
 /* Filter the content of chat posts. */
@@ -73,7 +75,7 @@ function my_format_chat_content( $content ) {
 			$chat_output .= "\n\t\t\t\t" . '<div class="chat-row ' . sanitize_html_class( "chat-speaker-{$speaker_id}" ) . '">';
 
 			/* Add the chat row author. */
-			$chat_output .= "\n\t\t\t\t\t" . '<div class="chat-author ' . sanitize_html_class( strtolower( "chat-author-{$chat_author}" ) ) . ' vcard"><cite class="fn">' . apply_filters( 'my_post_format_chat_author', $chat_author, $speaker_id ) . '</cite>' . $separator . '</div>';
+			$chat_output .= "\n\t\t\t\t\t" . '<div class="chat-author ' . sanitize_html_class( strtolower( "chat-author-{$chat_author}" ) ) . ' vcard"><span class="fn">' . apply_filters( 'my_post_format_chat_author', $chat_author, $speaker_id ) . '</span>' . $separator . '</div>';
 
 			/* Add the chat row text. */
 			$chat_output .= "\n\t\t\t\t\t" . '<div class="chat-text">' . str_replace( array( "\r", "\n", "\t" ), '', apply_filters( 'my_post_format_chat_text', $chat_text, $chat_author, $speaker_id ) ) . '</div>';

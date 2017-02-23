@@ -1,8 +1,14 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Plantilla principal
+ *
+ */
 
-	<main>
+get_header(); ?>
+
+	<main class="content index clear">
 		<!-- section -->
-		<section class="clear">
+		<section>
 
 		<?php if ( have_posts() ): while ( have_posts() ) : the_post(); ?>
 	

@@ -1,6 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Plantilla de páginas
+ *
+ */
 
-	<main role="main">
+get_header(); ?>
+
+	<main class="content page clear">
 		<!-- section -->
 		<section>
 
@@ -54,9 +60,8 @@
 			<!-- /article -->
 
 		<?php endif; ?>
-			<div class="clear"></div>
-
-		</section>
+			
+        </section>
 		<!-- /section -->
 	</main>
 

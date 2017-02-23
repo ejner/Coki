@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Coki';
   src:
-    url('fonts/Coki.ttf?3jmyk0') format('truetype'),
-    url('fonts/Coki.woff?3jmyk0') format('woff'),
-    url('fonts/Coki.svg?3jmyk0#Coki') format('svg');
+    url('../fonts/Coki.ttf?3jmyk0') format('truetype'),
+    url('../fonts/Coki.woff?3jmyk0') format('woff'),
+    url('../fonts/Coki.svg?3jmyk0#Coki') format('svg');
   font-weight: normal;
   font-style: normal;
 }
