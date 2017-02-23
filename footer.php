@@ -2,12 +2,15 @@
 /**
  * Plantilla de pie de página
  *
+ * @package Coki
+ * @version 1.0
+ * @since 1.0.0
  */
 
 ?>
 			<div class="clear"></div>
-            
-            <!-- footer -->
+
+			<!-- footer -->
 			<footer class="footer">
 
 				<!-- .copyright -->
