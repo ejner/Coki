@@ -21,13 +21,13 @@ function coki_version() {
 	return $theme->get( 'Version' );
 }
 
-// Coki requiere WordPress 4.7+
+/* Coki requiere WordPress 4.7+ */
 if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '<' ) ) {
 	require get_template_directory() . '/inc/back-compat.php';
 	return;
 }
 
-// Carga "format-chat.php"
+/* Carga "format-chat.php" */
 require get_template_directory() . '/inc/chat-format.php';
 
 /**
@@ -45,7 +45,7 @@ function coki_setup() {
 	add_theme_support( 'html5', array( 'comment-form', 'comment-list', 'gallery', 'caption' ) ); // HTML5
 	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' ) ); // Formatos de entrada
 
-	// Elimina acciones
+	/* Elimina acciones */
 	add_filter( 'show_admin_bar', '__return_false' ); // Oculta barra de administración
 	remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
 	remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed
@@ -68,19 +68,19 @@ add_action( 'after_setup_theme', 'coki_setup' );
  * @since 1.0.0
  */
 function coki_enqueue() {
-	// Normalize 5.0.0
+	/* Normalize 5.0.0 */
 	wp_register_style( 'normalize', get_template_directory_uri() . '/css/normalize.min.css', array(), '5.0.0', 'all' );
 	wp_enqueue_style( 'normalize' );
 
-	// Coki
+	/* Coki */
 	wp_register_style( 'coki', get_template_directory_uri() . '/style.css', array(), coki_version(), 'all' );
 	wp_enqueue_style( 'coki' );
 
-	// Coki Icons
+	/* Coki Icons */
 	wp_register_style('coki-font', get_template_directory_uri() . '/css/fonts.css', array(), coki_version(), 'all' );
 	wp_enqueue_style('coki-font');
 
-	// Modernizr 3.3.1
+	/* Modernizr 3.3.1 */
 	wp_register_script( 'modernizr', get_template_directory_uri() . '/js/modernizr.min.js', array(), '3.3.1', 'all' );
 	wp_enqueue_script( 'modernizr' );
 }
@@ -236,11 +236,11 @@ function coki_time_published() {
 	$time_difference = current_time( 'timestamp' ) - get_the_time( 'U' );
 	$tag = 'class="date" datatime="' . get_the_time( 'Y-m-d\TH:i:s' ) . '"';
 
-	// Si la diferencia es menor a 86400 segundos (24 horas)
+	/* Si la diferencia es menor a 86400 segundos (24 horas) */
 	if ( $time_difference < 86400 ) {
 		echo sprintf( __( '<time %1s>Hace %2$s atrás</time>', 'coki' ), $tag, $time );
 	
-	// Si es mayor a 86400 segundos
+	/* Si es mayor a 86400 segundos */
 	} else {
 		echo sprintf( __( '<time %1$s>%2$s</time>', 'coki' ), $tag, get_the_date() );
 	}
@@ -255,13 +255,13 @@ function coki_url_link() {
 	if ( has_post_format( 'link' ) ) {
 		$content = get_the_content();
 
-		// Verifica si existe una etiqueta <a> y extrae el enlace
+		/* Verifica si existe una etiqueta <a> y extrae el enlace */
 		if ( get_url_in_content( $content ) ) {
-			echo get_url_in_content( $content );
+			echo get_url_in_content( $content ); // WPCS: XSS OK
 
-		// Si no existe, verifica que exista un enlace en el contenido
+		/* Si no existe, verifica que exista un enlace en el contenido */
 		} elseif ( preg_match( '/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/', $content, $matches ) ) {
-			echo esc_url( $matches[0] );
-		}		
+			echo esc_url_raw( $matches[0] );
+		}
 	}
 }
