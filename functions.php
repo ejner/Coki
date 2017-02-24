@@ -36,17 +36,16 @@ require get_template_directory() . '/inc/chat-format.php';
  * @since 1.0.0
  */
 function coki_setup() {
-	add_theme_support( 'menus' ); // Soporte de menús
-	add_theme_support( 'title-tag' ); // Título
-	add_theme_support( 'post-thumbnails' ); // Soporte de miniaturas
-	add_image_size( 'single', 700, 200, true ); // Tamaño de miniatura personalizado (vista individual)
-	add_image_size( 'home', 120, 120, true ); // Tamaño de miniatura personalizado (vista general)
-	add_theme_support( 'automatic-feed-links' ); // Habilita enlaces RSS en la cabecera para comentarios
-	add_theme_support( 'html5', array( 'comment-form', 'comment-list', 'gallery', 'caption' ) ); // HTML5
-	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' ) ); // Formatos de entrada
+	add_theme_support( 'menus' ); // Soporte de menús.
+	add_theme_support( 'title-tag' ); // Título.
+	add_theme_support( 'post-thumbnails' ); // Soporte de miniaturas.
+	add_image_size( 'single', 700, 200, true ); // Tamaño de miniatura personalizado (vista individual).
+	add_image_size( 'home', 120, 120, true ); // Tamaño de miniatura personalizado (vista general).
+	add_theme_support( 'automatic-feed-links' ); // Habilita enlaces RSS en la cabecera para comentarios.
+	add_theme_support( 'html5', array( 'comment-form', 'comment-list', 'gallery', 'caption' ) ); // HTML5.
+	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' ) ); // Formatos de entrada.
 
 	/* Elimina acciones */
-	add_filter( 'show_admin_bar', '__return_false' ); // Oculta barra de administración
 	remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds.
 	remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed.
 	remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link.
@@ -55,7 +54,7 @@ function coki_setup() {
 	remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // Prev link.
 	remove_action( 'wp_head', 'start_post_rel_link', 10, 0 ); // Start link.
 	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
-	remove_action( 'wp_head', 'wp_generator'); // Display the XHTML generator that is generated on the wp_head hook, WP version.
+	remove_action( 'wp_head', 'wp_generator' ); // Display the XHTML generator that is generated on the wp_head hook, WP version.
 	remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
 	remove_action( 'wp_head', 'rel_canonical' );
 	remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
@@ -121,7 +120,7 @@ function coki_menu() {
  */
 function coki_register_menu() {
 	register_nav_menus(array(
-		'header-menu' => __('Menú cabecera', 'coki'),
+		'header-menu' => __( 'Menú cabecera', 'coki' ),
 	));
 }
 add_action( 'init', 'coki_register_menu' );
@@ -163,10 +162,10 @@ function coki_icon( $icon = '', $color = '' ) {
 	$format = array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' );
 	$icon = esc_html( $icon );
 	$color = trim( $color );
-	$color = esc_html( $color );		
+	$color = esc_html( $color );
 
 	/* Si $icon esta definido, lo devuelve */
-	if ( ! empty ( $icon ) ) {
+	if ( ! empty( $icon ) ) {
 		$format = $icon;
 	/* Si no, verifica si es un artículo fijado */
 	} elseif ( is_sticky() ) {
@@ -179,7 +178,7 @@ function coki_icon( $icon = '', $color = '' ) {
 		$format = 'standard';
 	}
 	/* Verifica si $color está definido, y si lo está, añade el color */
-	if ( ! empty ( $color ) ) {
+	if ( ! empty( $color ) ) {
 		$color = ' style="background-color: ' . $color . '!important"';
 	}
 	/* Imprime el icono */
@@ -230,7 +229,7 @@ function coki_url_link() {
 
 		/* Verifica si existe una etiqueta <a> y extrae el enlace */
 		if ( get_url_in_content( $content ) ) {
-			echo get_url_in_content( $content ); /* WPCS: XSS OK */
+			echo get_url_in_content( $content ); // WPCS: XSS OK.
 		/* Si no existe, verifica que exista un enlace en el contenido */
 		} elseif ( preg_match( '/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/', $content, $matches ) ) {
 			echo esc_url_raw( $matches[0] );
