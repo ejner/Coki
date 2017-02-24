@@ -47,17 +47,17 @@ function coki_setup() {
 
 	/* Elimina acciones */
 	add_filter( 'show_admin_bar', '__return_false' ); // Oculta barra de administración
-	remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
-	remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed
-	remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link
+	remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds.
+	remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed.
+	remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link.
 	remove_action( 'wp_head', 'wlwmanifest_link' ); // Display the link to the Windows Live Writer manifest file.
-	remove_action( 'wp_head', 'index_rel_link' ); // Index link
-	remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // Prev link
-	remove_action( 'wp_head', 'start_post_rel_link', 10, 0 ); // Start link
+	remove_action( 'wp_head', 'index_rel_link' ); // Index link.
+	remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // Prev link.
+	remove_action( 'wp_head', 'start_post_rel_link', 10, 0 ); // Start link.
 	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
-	remove_action( 'wp_head', 'wp_generator'); // Display the XHTML generator that is generated on the wp_head hook, WP version
+	remove_action( 'wp_head', 'wp_generator'); // Display the XHTML generator that is generated on the wp_head hook, WP version.
 	remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
-	remove_action( 'wp_head', 'rel_canonical');
+	remove_action( 'wp_head', 'rel_canonical' );
 	remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
 }
 add_action( 'after_setup_theme', 'coki_setup' );
@@ -77,14 +77,14 @@ function coki_enqueue() {
 	wp_enqueue_style( 'coki' );
 
 	/* Coki Icons */
-	wp_register_style('coki-font', get_template_directory_uri() . '/css/fonts.css', array(), coki_version(), 'all' );
-	wp_enqueue_style('coki-font');
+	wp_register_style( 'coki-font', get_template_directory_uri() . '/css/fonts.css', array(), coki_version(), 'all' );
+	wp_enqueue_style( 'coki-font' );
 
 	/* Modernizr 3.3.1 */
 	wp_register_script( 'modernizr', get_template_directory_uri() . '/js/modernizr.min.js', array(), '3.3.1', 'all' );
 	wp_enqueue_script( 'modernizr' );
 }
-add_action('wp_enqueue_scripts', 'coki_enqueue');
+add_action( 'wp_enqueue_scripts', 'coki_enqueue' );
 
 /**
  * Crea menú personalizado
@@ -109,7 +109,7 @@ function coki_menu() {
 			'link_after' => '',
 			'items_wrap' => '<ul>%3$s</ul>',
 			'depth' => 0,
-			'walker' => ''
+			'walker' => '',
 		)
 	);
 }
@@ -120,22 +120,24 @@ function coki_menu() {
  * @since 1.0.0
  */
 function coki_register_menu() {
-	register_nav_menus(array( // Using array to specify more menus if needed
-		'header-menu' => __('Header Menu', 'html5blank'), // Main Navigation
+	register_nav_menus(array(
+		'header-menu' => __('Menú cabecera', 'coki'),
 	));
 }
-add_action('init', 'coki_register_menu');
+add_action( 'init', 'coki_register_menu' );
 
 /**
  * Paginación en entradas, sin dependencias
  *
  * @since 1.0.0
  *
- * @param string $prev Enlace "Anterior"
- * @param string $next Enlace "Siguiente"
+ * @param string $prev Enlace "Anterior".
+ * @param string $next Enlace "Siguiente".
  */
-function coki_pagination( $prev = '<i class="coki-prev"></i>', $next = '<i class="coki-next"></i>' ) {
+function coki_pagination( $prev = '&laquo;', $next = '&raquo;' ) {
 	global $wp_query;
+	$prev = esc_html( $prev );
+	$next = esc_html( $next );
 	$big = 999999999;
 
 	echo paginate_links( array(
@@ -144,70 +146,43 @@ function coki_pagination( $prev = '<i class="coki-prev"></i>', $next = '<i class
 		'current' => max( 1, get_query_var( 'paged' ) ),
 		'total' => $wp_query->max_num_pages,
 		'prev_text' => $prev,
-		'next_text' => $next
+		'next_text' => $next,
 	));
 }
 add_action( 'init', 'coki_pagination' );
-
-/**
- * Añade slug como clase en body (creado por Starkers WordPress Theme)
- *
- * @since 1.0.0
- *
- * @param string $classes Ingresa las clases a filtrar
- */
-function coki_slug_body( $classes ) {
-	global $post;
-
-	if ( is_home() ) {
-		$key = array_search( 'blog', $classes );
-
-		if ( $key > -1 ) {
-			unset( $classes[$key] );
-		}
-
-	} elseif ( is_page() ) {
-		$classes[] = sanitize_html_class( $post->post_name );
-
-	} elseif ( is_singular() ) {
-		$classes[] = sanitize_html_class( $post->post_name );
-	}
-
-	return $classes;
-}
-add_filter( 'body_class', 'coki_slug_body' );
 
 /**
  * Muestra icono según tipo de formato de entrada
  *
  * @since 1.0.0
  *
- * @param string $icon Icono a mostrar
- * @param string $color Color de fondo a mostrar
+ * @param string $icon Icono a mostrar.
+ * @param string $color Color de fondo a mostrar.
  */
 function coki_icon( $icon = '', $color = '' ) {
 	$format = array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' );
+	$icon = esc_html( $icon );
+	$color = trim( $color );
+	$color = esc_html( $color );		
 
-	if( $icon !== '' ) {
+	/* Si $icon esta definido, lo devuelve */
+	if ( ! empty ( $icon ) ) {
 		$format = $icon;
-	}
-
-	elseif( is_sticky() ) {
+	/* Si no, verifica si es un artículo fijado */
+	} elseif ( is_sticky() ) {
 		$format = 'sticky';
-	}
-
-	elseif( has_post_format( $format ) ) {
+	/* O un formato de entrada */
+	} elseif ( has_post_format( $format ) ) {
 		$format = get_post_format();
-	}
-
-	else {
+	/* Y si no es ninguno, lo asume como 'standard' */
+	} else {
 		$format = 'standard';
 	}
-
-	if( $color !== '' ) {
+	/* Verifica si $color está definido, y si lo está, añade el color */
+	if ( ! empty ( $color ) ) {
 		$color = ' style="background-color: ' . $color . '!important"';
 	}
-
+	/* Imprime el icono */
 	echo '<i class="type coki-' . $format . '"' . $color . '></i>';
 }
 
@@ -217,7 +192,7 @@ function coki_icon( $icon = '', $color = '' ) {
  *
  * @since 1.0.0
  *
- * @param string $html URL oEmbed
+ * @param string $html URL oEmbed.
  */
 function coki_responsive_embed( $html ) {
 	return '<div class="embed-container">' . $html . '</div>';
@@ -232,18 +207,16 @@ add_filter( 'video_embed_html', 'coki_responsive_embed' );
  * @since 1.0.0
  */
 function coki_time_published() {
-	$time = human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) );
 	$time_difference = current_time( 'timestamp' ) - get_the_time( 'U' );
-	$tag = 'class="date" datatime="' . get_the_time( 'Y-m-d\TH:i:s' ) . '"';
 
 	/* Si la diferencia es menor a 86400 segundos (24 horas) */
 	if ( $time_difference < 86400 ) {
-		echo sprintf( __( '<time %1s>Hace %2$s atrás</time>', 'coki' ), $tag, $time );
-	
+		$return = sprintf( __( 'Hace %s atrás', 'coki' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) );
 	/* Si es mayor a 86400 segundos */
 	} else {
-		echo sprintf( __( '<time %1$s>%2$s</time>', 'coki' ), $tag, get_the_date() );
+		$return = sprintf( __( '%1$s a las %2$s', 'coki' ), get_the_date(), get_the_time() );
 	}
+	echo '<i class="coki-time"></i> <time class="date" datatime="' . get_the_time( 'Y-m-d\TH:i:s' ) . '">' . $return . '</time>';
 }
 
 /**
@@ -257,8 +230,7 @@ function coki_url_link() {
 
 		/* Verifica si existe una etiqueta <a> y extrae el enlace */
 		if ( get_url_in_content( $content ) ) {
-			echo get_url_in_content( $content ); // WPCS: XSS OK
-
+			echo get_url_in_content( $content ); /* WPCS: XSS OK */
 		/* Si no existe, verifica que exista un enlace en el contenido */
 		} elseif ( preg_match( '/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/', $content, $matches ) ) {
 			echo esc_url_raw( $matches[0] );

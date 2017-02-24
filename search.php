@@ -15,7 +15,7 @@ get_header(); ?>
 			
 		<?php if ( have_posts() ) : ?>
 
-            <?php coki_icon( 'results unique' ); ?>
+			<?php coki_icon( 'results unique' ); ?>
 			<h2><span class="title-page"><?php sprintf( __( 'Resultados para "<em>%s</em>"', 'coki' ), get_search_query() ); ?></span></h2>
 		
 		<?php while ( have_posts() ) : the_post(); ?>
@@ -29,7 +29,7 @@ get_header(); ?>
 					
 			<?php if ( has_post_format( 'link' ) ) : ?>
 				<!-- post title -->
-				<h2><a href="<?php echo wp_strip_all_tags( get_the_content() ); ?>" class="title-post" target="_blank" title="Visitar '<?php the_title(); ?>'"><?php the_title(); ?></a></h2>
+				<h2><a href="<?php coki_url_link(); ?>" class="title-post" target="_blank" title="Visitar '<?php the_title(); ?>'"><?php the_title(); ?></a></h2>
 				<!-- /post title -->
 					
 			<?php else : ?>
@@ -46,15 +46,15 @@ get_header(); ?>
 				</div>
 				<!-- /.content-post -->
 					
-                <!-- .details -->
+				<!-- .details -->
 				<div class="details">
-                    <ul class="details-list">
-                        <li><?php coki_time_published(); ?></li>
+					<ul class="details-list">
+						<li><?php coki_time_published(); ?></li>
                         <li><i class="coki-permalink"></i> <a href="<?php the_permalink(); ?>" title="<?php sprintf( __( 'Enlace permanente a \'%s\'', 'coki' ), get_the_title() ); ?>">Enlace permanente</a></li>
-                        <li><i class="coki-comment"></i> <a href="<?php the_permalink(); ?>#comments"><?php comments_number( '0', '1', '%' ); ?></a></li>
-                        <?php edit_post_link( sprintf( __( 'Editar <em>"%s"</em>', 'coki' ), get_the_title() ), '<li><i class=" coki-edit"></i> ', '</li>' ); ?>
-                    </ul>
-                </div>
+						<li><i class="coki-comment"></i> <a href="<?php the_permalink(); ?>#comments"><?php comments_number( '0', '1', '%' ); ?></a></li>
+						<?php edit_post_link( sprintf( __( 'Editar <em>"%s"</em>', 'coki' ), get_the_title() ), '<li><i class=" coki-edit"></i> ', '</li>' ); ?>
+					</ul>
+				</div>
 				<!-- /.details -->
 					
 			</article>
