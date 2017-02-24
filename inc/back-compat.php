@@ -5,13 +5,14 @@
  * Previene activar el theme en versiones de WordPress anteriores a la 4.7.
  * Código tomado desde Twenty Seventeen y adaptado ligeramente.
  *
+ * @package Coki
+ * @version 1.0
  * @since 1.0.0
  */
 
 /**
- * function coki_switch_theme()
- *
  * Impide activar Coki y regresa al tema por defecto
+ *
  * @since 1.0.0
  */
 function coki_switch_theme() {
@@ -22,9 +23,8 @@ function coki_switch_theme() {
 add_action( 'after_switch_theme', 'coki_switch_theme' );
 
 /**
- * function coki_upgrade_notice()
- *
  * Mensaje a mostrar si se intenta activar el theme en versiones antiguas.
+ *
  * @since 1.0.0
  */
 function coki_upgrade_notice() {
@@ -33,9 +33,8 @@ function coki_upgrade_notice() {
 }
 
 /**
- * function coki_customize()
- *
  * Previene que sea cargado en el Personalizador
+ *
  * @since 1.0.0
  */
 function coki_customize() {
@@ -46,9 +45,8 @@ function coki_customize() {
 add_action( 'load-customize.php', 'coki_customize' );
 
 /**
- * function coki_preview()
- *
  * Previene que sea cargado en la Vista Previa
+ *
  * @since 1.0.0
  */
 function coki_preview() {

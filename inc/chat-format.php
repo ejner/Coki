@@ -6,9 +6,10 @@
  * http://justintadlock.com/archives/2012/08/21/post-formats-chat
  * La actual versión de Coki no realiza modificaciones significativas a este código.
  *
+ * @package Coki
+ * @version 1.0
  * @since 1.0.0
  */
-
 
 /* Filter the content of chat posts. */
 add_filter( 'the_content', 'my_format_chat_content' );
@@ -85,9 +86,9 @@ function my_format_chat_content( $content ) {
 		}
 
 		/**
-		 * If no author is found, assume this is a separate paragraph of text that belongs to the
-		 * previous speaker and label it as such, but let's still create a new row.
-		 */
+		* If no author is found, assume this is a separate paragraph of text that belongs to the
+		* previous speaker and label it as such, but let's still create a new row.
+		*/
 		else {
 
 			/* Make sure we have text. */
