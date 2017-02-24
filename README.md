@@ -1,4 +1,5 @@
-# Coki 1.0.0 - Beta 4
+# Coki 1.0.0 - Beta 5 (en desarrollo)
+[![Build Status](https://travis-ci.org/ejner/Coki.svg?branch=master)](https://travis-ci.org/ejner/Coki)
 Tema para WordPress 4.7+. Simple, elegante, adaptable.
 
 **IMPORTANTE**
