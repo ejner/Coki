@@ -85,8 +85,7 @@ function my_format_chat_content( $content ) {
 			/* Close the chat row. */
 			$chat_output .= "\n\t\t\t\t" . '</div><!-- .chat-row -->';
 
-		}
-
+		} 
 		/**
 		* If no author is found, assume this is a separate paragraph of text that belongs to the
 		* previous speaker and label it as such, but let's still create a new row.

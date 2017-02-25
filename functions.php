@@ -78,8 +78,9 @@ function coki_enqueue() {
 	wp_enqueue_script( 'modernizr' );
 
 	/* Respuestas en comentarios */
-	if ( is_singular() ) 
+	if ( is_singular() ) {
 		wp_enqueue_script( 'comment-reply' );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'coki_enqueue' );
 
