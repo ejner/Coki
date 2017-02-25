@@ -78,7 +78,8 @@ function coki_enqueue() {
 	wp_enqueue_script( 'modernizr' );
 
 	/* Respuestas en comentarios */
-	if ( is_singular() ) wp_enqueue_script( "comment-reply" );
+	if ( is_singular() ) 
+		wp_enqueue_script( 'comment-reply' );
 }
 add_action( 'wp_enqueue_scripts', 'coki_enqueue' );
 
@@ -158,8 +159,8 @@ add_action( 'init', 'coki_pagination' );
 function coki_icon( $icon = '', $color = '' ) {
 	$format = array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' );
 	$icon = esc_html( $icon );
-	$color = trim( $color );
 	$color = esc_html( $color );
+	$color = trim( $color );
 
 	/* Si $icon esta definido, lo devuelve */
 	if ( ! empty( $icon ) ) {
@@ -179,10 +180,10 @@ function coki_icon( $icon = '', $color = '' ) {
 	}
 	/* Verifica si $color está definido, y si lo está, añade el color */
 	if ( ! empty( $color ) ) {
-		$color = ' style="background-color: ' . $color . '!important"'; // WPCS: XSS OK.
+		$color = ' style="background-color: ' . $color . '!important"';
 	}
 	/* Imprime el icono */
-	echo '<i class="type coki-' . $format . '"' . $color . '></i>';
+	echo '<i class="type coki-' . $format . '"' . $color . '></i>'; // WPCS: XSS OK.
 }
 
 /**
@@ -215,7 +216,7 @@ function coki_time_published() {
 	} else {
 		$return = sprintf( __( '%1$s a las %2$s', 'coki' ), date_i18n( get_the_date() ), date_i18n( get_the_time() ) );
 	}
-	echo '<i class="coki-time"></i> <time class="date" datatime="' . date_i18n( get_the_time( 'Y-m-d\TH:i:s' ) ) . '">' . $return . '</time>'; // WPCS: XSS OK. 
+	echo '<i class="coki-time"></i> <time class="date" datatime="' . date_i18n( get_the_time( 'Y-m-d\TH:i:s' ) ) . '">' . $return . '</time>'; // WPCS: XSS OK.
 }
 
 /**

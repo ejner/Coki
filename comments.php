@@ -21,7 +21,7 @@ if ( post_password_required() ) {
 		<h2 class="comments-title">
 			<?php
 				printf( // WPCS: XSS OK.
-					esc_html( _nx( 'Un comentario', '%s comentarios', get_comments_number(), 'título comentarios', 'coki' ) ),
+					esc_html( _nx( '%s comentario', '%s comentarios', get_comments_number(), 'título comentarios', 'coki' ) ),
 					number_format_i18n( get_comments_number() )
 				);
 			?>
@@ -71,7 +71,7 @@ if ( post_password_required() ) {
 		<!-- /#comment-nav-above -->
 		<?php endif;
 	endif;
-	
+
 	/* Comentarios cerrados */
 	if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 

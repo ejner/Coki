@@ -18,9 +18,9 @@ add_filter( 'the_content', 'my_format_chat_content' );
 add_filter( 'my_post_format_chat_text', 'wpautop' );
 
 /**
- * This function filters the post content when viewing a post with the "chat" post format.  It formats the 
- * content with structured HTML markup to make it easy for theme developers to style chat posts.  The 
- * advantage of this solution is that it allows for more than two speakers (like most solutions).  You can 
+ * This function filters the post content when viewing a post with the "chat" post format.  It formats the
+ * content with structured HTML markup to make it easy for theme developers to style chat posts.  The
+ * advantage of this solution is that it allows for more than two speakers (like most solutions).  You can
  * have 100s of speakers in your chat post, each with their own, unique classes for styling.
  *
  * @author David Chandra
@@ -39,8 +39,9 @@ function my_format_chat_content( $content ) {
 	global $_post_format_chat_ids;
 
 	/* If this is not a 'chat' post, return the content. */
-	if ( !has_post_format( 'chat' ) )
+	if ( ! has_post_format( 'chat' ) ) {
 		return $content;
+	}
 
 	/* Set the global variable of speaker IDs to a new, empty array for this chat. */
 	$_post_format_chat_ids = array();
@@ -83,6 +84,7 @@ function my_format_chat_content( $content ) {
 
 			/* Close the chat row. */
 			$chat_output .= "\n\t\t\t\t" . '</div><!-- .chat-row -->';
+
 		}
 
 		/**
@@ -92,7 +94,7 @@ function my_format_chat_content( $content ) {
 		else {
 
 			/* Make sure we have text. */
-			if ( !empty( $chat_row ) ) {
+			if ( ! empty( $chat_row ) ) {
 
 				/* Open the chat row. */
 				$chat_output .= "\n\t\t\t\t" . '<div class="chat-row ' . sanitize_html_class( "chat-speaker-{$speaker_id}" ) . '">';
@@ -116,10 +118,10 @@ function my_format_chat_content( $content ) {
 }
 
 /**
- * This function returns an ID based on the provided chat author name.  It keeps these IDs in a global 
+ * This function returns an ID based on the provided chat author name.  It keeps these IDs in a global
  * array and makes sure we have a unique set of IDs.  The purpose of this function is to provide an "ID"
- * that will be used in an HTML class for individual chat rows so they can be styled.  So, speaker "John" 
- * will always have the same class each time he speaks.  And, speaker "Mary" will have a different class 
+ * that will be used in an HTML class for individual chat rows so they can be styled.  So, speaker "John"
+ * will always have the same class each time he speaks.  And, speaker "Mary" will have a different class
  * from "John" but will have the same class each time she speaks.
  *
  * @author David Chandra
