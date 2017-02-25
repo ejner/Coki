@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Coki';
   src:
-    url('../fonts/Coki.ttf?3jmyk0') format('truetype'),
-    url('../fonts/Coki.woff?3jmyk0') format('woff'),
-    url('../fonts/Coki.svg?3jmyk0#Coki') format('svg');
+    url('../fonts/Coki.ttf?648ta3') format('truetype'),
+    url('../fonts/Coki.woff?648ta3') format('woff'),
+    url('../fonts/Coki.svg?648ta3#Coki') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,14 +23,11 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.coki-home:before {
+  content: "\e88a";
+}
 .coki-time:before {
   content: "\e191";
-}
-.coki-prev:before {
-  content: "\e5c4";
-}
-.coki-next:before {
-  content: "\e5c8";
 }
 .coki-top:before {
   content: "\e5d8";
@@ -104,4 +101,3 @@ i {
 .coki-status:before {
   content: "\e8dc";
 }
-
