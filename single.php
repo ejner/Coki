@@ -81,6 +81,9 @@ get_header(); ?>
 					
 			</article>
 			<!-- /article -->
+
+			<?php comments_template(); ?> 
+
 		<?php endwhile; ?>
 		<?php else : ?>
 
@@ -94,12 +97,6 @@ get_header(); ?>
 
 		</section>
 		<!-- /section -->
-		
-		<!-- .pagination -->
-		<div class="pagination">
-			<?php coki_pagination(); ?>
-		</div>
-		<!-- /.pagination -->
 		
 	</main>
 

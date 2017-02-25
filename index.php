@@ -21,7 +21,7 @@ get_header(); ?>
 			<?php if ( has_post_thumbnail() ) { ?>
 				<!-- .post thumbnail -->
 				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-					<?php the_post_thumbnail( 'single' ); ?>
+					<?php the_post_thumbnail( 'home' ); ?>
 				</a>
 				<!-- /post thumbnail -->
 			<?php } ?>

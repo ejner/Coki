@@ -21,12 +21,6 @@ function coki_version() {
 	return $theme->get( 'Version' );
 }
 
-/* Coki requiere WordPress 4.7+ */
-if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '<' ) ) {
-	require get_template_directory() . '/inc/back-compat.php';
-	return;
-}
-
 /* Carga "format-chat.php" */
 require get_template_directory() . '/inc/chat-format.php';
 
@@ -82,6 +76,9 @@ function coki_enqueue() {
 	/* Modernizr 3.3.1 */
 	wp_register_script( 'modernizr', get_template_directory_uri() . '/js/modernizr.min.js', array(), '3.3.1', 'all' );
 	wp_enqueue_script( 'modernizr' );
+
+	/* Respuestas en comentarios */
+	if ( is_singular() ) wp_enqueue_script( "comment-reply" );
 }
 add_action( 'wp_enqueue_scripts', 'coki_enqueue' );
 
@@ -139,7 +136,7 @@ function coki_pagination( $prev = '&laquo;', $next = '&raquo;' ) {
 	$next = esc_html( $next );
 	$big = 999999999;
 
-	echo paginate_links( array(
+	echo paginate_links( array( // WPCS: XSS OK.
 		'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
 		'format' => '?paged=%#%',
 		'current' => max( 1, get_query_var( 'paged' ) ),
@@ -167,8 +164,11 @@ function coki_icon( $icon = '', $color = '' ) {
 	/* Si $icon esta definido, lo devuelve */
 	if ( ! empty( $icon ) ) {
 		$format = $icon;
-	/* Si no, verifica si es un artículo fijado */
-	} elseif ( is_sticky() ) {
+	/* Si no, verifica si es una entrada protegida */
+	} elseif ( post_password_required() ) {
+		$format = 'private';
+	/* O una entrada fijada */
+	} elseif ( is_sticky() && is_front_page() ) {
 		$format = 'sticky';
 	/* O un formato de entrada */
 	} elseif ( has_post_format( $format ) ) {
@@ -179,7 +179,7 @@ function coki_icon( $icon = '', $color = '' ) {
 	}
 	/* Verifica si $color está definido, y si lo está, añade el color */
 	if ( ! empty( $color ) ) {
-		$color = ' style="background-color: ' . $color . '!important"';
+		$color = ' style="background-color: ' . $color . '!important"'; // WPCS: XSS OK.
 	}
 	/* Imprime el icono */
 	echo '<i class="type coki-' . $format . '"' . $color . '></i>';
@@ -213,9 +213,9 @@ function coki_time_published() {
 		$return = sprintf( __( 'Hace %s atrás', 'coki' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) );
 	/* Si es mayor a 86400 segundos */
 	} else {
-		$return = sprintf( __( '%1$s a las %2$s', 'coki' ), get_the_date(), get_the_time() );
+		$return = sprintf( __( '%1$s a las %2$s', 'coki' ), date_i18n( get_the_date() ), date_i18n( get_the_time() ) );
 	}
-	echo '<i class="coki-time"></i> <time class="date" datatime="' . get_the_time( 'Y-m-d\TH:i:s' ) . '">' . $return . '</time>';
+	echo '<i class="coki-time"></i> <time class="date" datatime="' . date_i18n( get_the_time( 'Y-m-d\TH:i:s' ) ) . '">' . $return . '</time>'; // WPCS: XSS OK. 
 }
 
 /**

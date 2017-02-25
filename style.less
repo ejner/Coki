@@ -250,7 +250,7 @@ main.content {
         left: -6rem;
         border-radius: 4rem;
         color: #fff;
-        background-color: @gris;
+        background-color: @standard;
     }
 
     &.search {
@@ -307,7 +307,7 @@ article {
         }
 
         a:hover {
-            color: @gris;
+            color: @standard;
         }
     }
 
@@ -515,16 +515,6 @@ article {
         }
     }
 
-    &.format-standard {
-        i.type {
-            .background(@standard);
-        }
-
-        h2 a:hover {
-            color: @standard;
-        }
-    }
-
     &.sticky {
         i.type {
              .background(@sticky);
@@ -546,6 +536,13 @@ article {
     }
 }
 
+/* Comentarios */
+.comments-area {
+	textarea {
+		resize: none;
+	}
+}
+
 /* Paginación */
 .pagination {
     text-align: center;
@@ -553,17 +550,17 @@ article {
 
     .page-numbers {
         font-size: 2rem;
-        text-decoration: none;
         margin: 0 1rem;
         padding: 0.2rem 1rem;
-        color: @gris;
-        transition: color 0.3s linear, background-color 0.3s linear;
+		color: #131313;
     }
 
-    a.page-numbers:hover,
+	a:hover {
+		color: @standard;
+	}
+
     .current {
-        color: #fff;
-        background-color: @gris;
+        color: @standard;
     }
 }
 

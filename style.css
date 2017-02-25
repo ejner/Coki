@@ -193,7 +193,7 @@ main.content i.type {
   left: -6rem;
   border-radius: 4rem;
   color: #fff;
-  background-color: #9E9E9E;
+  background-color: #009688;
 }
 main.content.search i.type.unique {
   background-color: #795548;
@@ -232,7 +232,7 @@ article h2 .title-post {
   transition: color .3s linear;
 }
 article h2 a:hover {
-  color: #9E9E9E;
+  color: #009688;
 }
 article .details ul {
   padding: 0;
@@ -372,12 +372,6 @@ article.format-chat .chat-row.chat-speaker-6 .chat-author {
 article.format-chat .chat-row.chat-speaker-6 .chat-text {
   background-color: #b06e27;
 }
-article.format-standard i.type {
-  background-color: #009688;
-}
-article.format-standard h2 a:hover {
-  color: #009688;
-}
 article.sticky i.type {
   background-color: #FFC107;
 }
@@ -390,6 +384,10 @@ article.page i.type {
 article.page h2 a:hover {
   color: #FF9800;
 }
+/* Comentarios */
+.comments-area textarea {
+  resize: none;
+}
 /* Paginación */
 .pagination {
   text-align: center;
@@ -397,16 +395,15 @@ article.page h2 a:hover {
 }
 .pagination .page-numbers {
   font-size: 2rem;
-  text-decoration: none;
   margin: 0 1rem;
   padding: 0.2rem 1rem;
-  color: #9E9E9E;
-  transition: color 0.3s linear, background-color 0.3s linear;
+  color: #131313;
 }
-.pagination a.page-numbers:hover,
+.pagination a:hover {
+  color: #009688;
+}
 .pagination .current {
-  color: #fff;
-  background-color: #9E9E9E;
+  color: #009688;
 }
 /* Pie de Página */
 .copyright {
