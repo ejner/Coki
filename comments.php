@@ -48,7 +48,9 @@ if ( post_password_required() ) {
 		<ol class="comment-list">
 			<?php
 				wp_list_comments( array(
-					'style'      => 'ol',
+					'style' => 'ol',
+					'callback' => 'coki_comments',
+					'avatar_size' => 70,
 					'short_ping' => true,
 				) );
 			?>

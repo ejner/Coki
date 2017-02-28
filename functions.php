@@ -157,18 +157,18 @@ add_action( 'init', 'coki_pagination' );
  * @param string $icon Icono a mostrar.
  * @param string $color Color de fondo a mostrar.
  */
-function coki_icon( $icon = '', $color = '' ) {
+function coki_icon( $icon = null, $color = null ) {
 	$format = array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' );
 	$icon = esc_html( $icon );
 	$color = esc_html( $color );
 	$color = trim( $color );
 
-	/* Si $icon esta definido, lo devuelve */
-	if ( ! empty( $icon ) ) {
-		$format = $icon;
-	/* Si no, verifica si es una entrada protegida */
-	} elseif ( post_password_required() ) {
+	/* Si es una entrada protegida */
+	if ( post_password_required() ) {
 		$format = 'private';
+	/* Si no, verifica si $icon esta definido */
+	} elseif ( ! empty( $icon ) ) {
+		$format = $icon;
 	/* O una entrada fijada */
 	} elseif ( is_sticky() && is_front_page() ) {
 		$format = 'sticky';
@@ -215,7 +215,7 @@ function coki_time_published() {
 		$return = sprintf( __( 'Hace %s atrás', 'coki' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) );
 	/* Si es mayor a 86400 segundos */
 	} else {
-		$return = sprintf( __( '%1$s a las %2$s', 'coki' ), date_i18n( get_the_date() ), date_i18n( get_the_time() ) );
+		$return = sprintf( __( '%1$s a las %2$s', 'coki' ), esc_html( get_the_date() ), esc_html( get_the_time() ) );
 	}
 	echo '<i class="coki-time"></i> <time class="date" datatime="' . date_i18n( get_the_time( 'Y-m-d\TH:i:s' ) ) . '">' . $return . '</time>'; // WPCS: XSS OK.
 }
@@ -237,4 +237,44 @@ function coki_url_link() {
 			echo esc_url_raw( $matches[0] );
 		}
 	}
+}
+
+/**
+ * Callback personalizado para comentarios
+ *
+ * @since 1.0.0
+ */
+function coki_comments( $comment, $args, $depth ) {
+    ?>
+		<li <?php comment_class( empty( $args[ 'has_children' ] ) ? 'clear' : 'parent clear' ) ?> id="comment-<?php comment_ID() ?>">
+
+			<?php if ( $args['avatar_size'] != 0 ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
+
+			<div class="data-comments">
+				<span class="author"><?php echo get_comment_author_link() ?></span>
+
+				<ul class="details-comments">
+					<li><i class="coki-time"></i> <?php printf( __( '%1$s a las %2$s', 'coki' ), get_comment_date(),  get_comment_time() ); ?></li>
+					<li><i class="coki-permalink"></i> <a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>"><?php esc_html_e( 'Enlace permanente', 'coki' ) ;?></a></li>
+					<?php edit_comment_link( __( 'Editar comentario', 'coki' ), '<li><i class="coki-edit"></i> ', '</li>' ); ?>
+				</ul>
+
+				<div class="comment-comments">
+					<?php comment_text(); ?>
+				</div>
+
+				<?php if ( $comment->comment_approved == '0' ) : ?>
+				<div class="comment-awaiting-moderation">
+					<?php _e( 'Tu comentario está a la espera de moderación', 'coki' ); ?>
+				</div>
+				<?php endif; ?>
+
+				<div class="reply">
+					<?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+				</div>
+
+			</div>
+
+			<div class="clear"></div>
+<?php
 }

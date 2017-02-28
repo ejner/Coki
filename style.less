@@ -2,7 +2,7 @@
 	Theme Name: Coki
 	Theme URI: http://ejner.galaz.me/
 	Description: Diseño para blog personal
-	Version: 1.0.0-beta-5
+	Version: 1.0.0-beta.5
 	Author: Ejner Galaz
 	Author URI: http://galaz.me/
 */
@@ -22,6 +22,7 @@
 @sticky: #FFC107;
 @pagecolor: #FF9800;
 @results: #795548;
+@warning: @pagecolor;
 
 // Mixins
 .background(@color) {
@@ -38,9 +39,12 @@ html {
 body {
     font-family: 'Nunito', sans-serif;
     letter-spacing: 0.02rem;
-    line-height: 1.5rem;
     word-wrap: break-word;
     color: #232323;
+
+	p {
+		line-height: 1.8rem;
+	}
 }
 
 h1,
@@ -50,6 +54,7 @@ h4,
 h5,
 h6 {
     font-family: 'Nunito Sans', sans-serif;
+	line-height: 200%;
 }
 
 .wrap {
@@ -318,6 +323,10 @@ article {
         li {
             display: inline-block;
             padding: 0 1rem;
+
+			&:first-child {
+				padding-left: 0;
+			}
         }
     }
 
@@ -538,9 +547,76 @@ article {
 
 /* Comentarios */
 .comments-area {
-	textarea {
-		resize: none;
+	ol {
+		list-style-type: none;
+		padding: 0;
+
+		li.comment {
+			.avatar {
+				border-radius: 5rem;
+				display: block;
+				float: left;
+				margin-right: 2rem;
+			}
+
+			.data-comments {
+				display: block;
+				float: left;
+				margin: 1.3rem 0;
+
+				.author {
+					font-size: 1.2rem;
+				}
+
+				.details-comments {
+					list-style-type: none;
+					padding: 0;
+
+					li {
+						display: inline-block;
+						padding: 0 1rem;
+
+						&:first-child {
+							padding-left: 0;
+						}
+					}
+				}
+
+				.comment-comments {
+					margin: -0.5rem 0;
+				}
+			}
+
+			.comment-awaiting-moderation {
+				color: @warning;
+				font-weight: 700;
+				margin: 0.6rem 0 1rem 0;
+				font-size: 1.1rem;
+			}
+		}
+
+		li[class*="depth-"]:not(.depth-1) {
+			margin-left: 2rem;
+		}
 	}
+
+	.comment-form {
+		textarea {
+			resize: none;
+			display: block;
+			width: 90%;
+			padding: 0.8rem;
+			font-size: 1rem;
+			font-family: 'Nunito', sans-serif;
+		}
+
+		input:not([type="submit"]) {
+			width: 90%;
+			padding: 0.8rem;
+			font-size: 0.8rem;
+			display: block;
+		}
+	}	
 }
 
 /* Paginación */

@@ -2,7 +2,7 @@
 	Theme Name: Coki
 	Theme URI: http://ejner.galaz.me/
 	Description: Diseño para blog personal
-	Version: 1.0.0-beta-5
+	Version: 1.0.0-beta.5
 	Author: Ejner Galaz
 	Author URI: http://galaz.me/
 */
@@ -14,9 +14,11 @@ html {
 body {
   font-family: 'Nunito', sans-serif;
   letter-spacing: 0.02rem;
-  line-height: 1.5rem;
   word-wrap: break-word;
   color: #232323;
+}
+body p {
+  line-height: 1.8rem;
 }
 h1,
 h2,
@@ -25,6 +27,7 @@ h4,
 h5,
 h6 {
   font-family: 'Nunito Sans', sans-serif;
+  line-height: 200%;
 }
 .wrap {
   width: 85%;
@@ -242,6 +245,9 @@ article .details ul li {
   display: inline-block;
   padding: 0 1rem;
 }
+article .details ul li:first-child {
+  padding-left: 0;
+}
 article .embed-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -385,8 +391,60 @@ article.page h2 a:hover {
   color: #FF9800;
 }
 /* Comentarios */
-.comments-area textarea {
+.comments-area ol {
+  list-style-type: none;
+  padding: 0;
+}
+.comments-area ol li.comment .avatar {
+  border-radius: 5rem;
+  display: block;
+  float: left;
+  margin-right: 2rem;
+}
+.comments-area ol li.comment .data-comments {
+  display: block;
+  float: left;
+  margin: 1.3rem 0;
+}
+.comments-area ol li.comment .data-comments .author {
+  font-size: 1.2rem;
+}
+.comments-area ol li.comment .data-comments .details-comments {
+  list-style-type: none;
+  padding: 0;
+}
+.comments-area ol li.comment .data-comments .details-comments li {
+  display: inline-block;
+  padding: 0 1rem;
+}
+.comments-area ol li.comment .data-comments .details-comments li:first-child {
+  padding-left: 0;
+}
+.comments-area ol li.comment .data-comments .comment-comments {
+  margin: -0.5rem 0;
+}
+.comments-area ol li.comment .comment-awaiting-moderation {
+  color: #FF9800;
+  font-weight: 700;
+  margin: 0.6rem 0 1rem 0;
+  font-size: 1.1rem;
+}
+.comments-area ol li[class*="depth-"]:not(.depth-1) {
+  margin-left: 2rem;
+}
+.comments-area .comment-form textarea {
   resize: none;
+  display: block;
+  width: 90%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-family: 'Nunito', sans-serif;
+}
+.comments-area .comment-form input:not([type="submit"]) {
+  width: 90%;
+  padding: 0.8rem;
+  font-size: 0.8rem;
+  display: block;
 }
 /* Paginación */
 .pagination {
