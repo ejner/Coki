@@ -18,14 +18,6 @@ get_header(); ?>
 			<!-- article -->
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-			<?php if ( has_post_thumbnail() ) { ?>
-				<!-- .post thumbnail -->
-				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-					<?php the_post_thumbnail( 'home' ); ?>
-				</a>
-				<!-- /post thumbnail -->
-			<?php } ?>
-
 				<!-- .type -->
 				<?php coki_icon(); ?>
 				<!-- /.type -->
