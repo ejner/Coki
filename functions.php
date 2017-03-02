@@ -243,19 +243,30 @@ function coki_url_link() {
  * Callback personalizado para comentarios
  *
  * @since 1.0.0
+ *
+ * @link https://codex.wordpress.org/Function_Reference/wp_list_comments
+ *
+ * @param string $comment Comentario.
+ * @param string $args Argumentos.
+ * @param string $depth Profundidad.
  */
 function coki_comments( $comment, $args, $depth ) {
-    ?>
-		<li <?php comment_class( empty( $args[ 'has_children' ] ) ? 'clear' : 'parent clear' ) ?> id="comment-<?php comment_ID() ?>">
+	$arg = ( $args[ 'has_children' ] ) ? 'clear' : 'parent clear';
+	?>
+		<li <?php comment_class( empty( $arg ) ); ?> id="comment-<?php comment_ID() ?>">
 
-			<?php if ( $args['avatar_size'] != 0 ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
+			<?php 
+				if ( 0 != $args['avatar_size'] ) {
+					echo get_avatar( $comment, $args['avatar_size'] );
+				}
+			?>
 
 			<div class="data-comments">
 				<span class="author"><?php echo get_comment_author_link() ?></span>
 
 				<ul class="details-comments">
-					<li><i class="coki-time"></i> <?php printf( __( '%1$s a las %2$s', 'coki' ), get_comment_date(),  get_comment_time() ); ?></li>
-					<li><i class="coki-permalink"></i> <a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>"><?php esc_html_e( 'Enlace permanente', 'coki' ) ;?></a></li>
+					<li><i class="coki-time"></i> <?php printf( esc_html__( '%1$s a las %2$s', 'coki' ), get_comment_date(),  get_comment_time() ); ?></li>
+					<li><i class="coki-permalink"></i> <a href="<?php echo esc_html( get_comment_link( $comment->comment_ID ) ); ?>"><?php esc_html_e( 'Enlace permanente', 'coki' ); ?></a></li>
 					<?php edit_comment_link( __( 'Editar comentario', 'coki' ), '<li><i class="coki-edit"></i> ', '</li>' ); ?>
 				</ul>
 
@@ -263,9 +274,9 @@ function coki_comments( $comment, $args, $depth ) {
 					<?php comment_text(); ?>
 				</div>
 
-				<?php if ( $comment->comment_approved == '0' ) : ?>
+				<?php if ( '0' == $comment->comment_approved ) : ?>
 				<div class="comment-awaiting-moderation">
-					<?php _e( 'Tu comentario está a la espera de moderación', 'coki' ); ?>
+					<?php esc_html_e( 'Tu comentario está a la espera de moderación', 'coki' ); ?>
 				</div>
 				<?php endif; ?>
 
