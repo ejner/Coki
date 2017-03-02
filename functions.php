@@ -251,11 +251,11 @@ function coki_url_link() {
  * @param string $depth Profundidad.
  */
 function coki_comments( $comment, $args, $depth ) {
-	$arg = ( $args[ 'has_children' ] ) ? 'clear' : 'parent clear';
+	$arg = ( $args['has_children'] ) ? 'clear' : 'parent clear';
 	?>
 		<li <?php comment_class( empty( $arg ) ); ?> id="comment-<?php comment_ID() ?>">
 
-			<?php 
+			<?php
 				if ( 0 != $args['avatar_size'] ) {
 					echo get_avatar( $comment, $args['avatar_size'] );
 				}
