@@ -45,14 +45,20 @@ get_header(); ?>
 			<?php else : ?>
 					
 				<!-- post title -->
-				<h2><a href="<?php the_permalink(); ?>" class="title-post" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+			<?php
+				if ( is_single() ) {
+					the_title( '<h1 class="title-post">', '</h1>' );
+				} else {
+					the_title( '<h2 class="title-post"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+				}
+			?>
 				<!-- /post title -->
 
 				<!-- .details -->
 				<div class="details">
 					<ul class="details-list">
 						<li><?php coki_time_published(); ?></li>
-						<li><i class="coki-permalink"></i> <a href="<?php the_permalink(); ?>" title="<?php sprintf( __( 'Enlace permanente a \'%s\'', 'coki' ), get_the_title() ); ?>">Enlace permanente</a></li>
+						<li><i class="coki-permalink"></i> <a href="<?php the_permalink(); ?>" title="<?php printf( esc_html__( 'Enlace permanente a \'%s\'', 'coki' ), get_the_title() ); ?>"><?php esc_html_e( 'Enlace permanente', 'coki' ); ?></a></li>
 						<li><i class="coki-comment"></i> <a href="<?php the_permalink(); ?>#comments"><?php comments_number( '0', '1', '%' ); ?></a></li>
 						<?php edit_post_link( sprintf( __( 'Editar <em>"%s"</em>', 'coki' ), get_the_title() ), '<li><i class=" coki-edit"></i> ', '</li>' ); ?>
 					</ul>
@@ -74,7 +80,7 @@ get_header(); ?>
 					<ul class="meta-details">
 						<li><i class="coki-author"></i> <?php the_author_posts_link(); ?></li>
 						<li><i class="coki-category"></i> <?php the_category( ', ' ); ?></li>
-						<li><i class="coki-tags"></i> <?php the_tags( '' ); ?></li>
+						<li><?php the_tags( '<i class="coki-tags"></i> ' ); ?></li>
 					</ul>
 				</details>
 				<!-- /.details -->

@@ -31,7 +31,7 @@ get_header(); ?>
 				<!-- /.type -->
 
 				<!-- .title-post -->
-				<h2><span class="title-post"><?php the_title(); ?></span></h2>
+				<?php the_title( '<h1 class="title-post">', '</h1>' ); ?>
 				<!-- /.title-post -->
 
 				<!-- .content-post -->
