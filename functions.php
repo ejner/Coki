@@ -21,6 +21,11 @@ function coki_version() {
 	return $theme->get( 'Version' );
 }
 
+/* Define ancho del tema */
+if ( ! isset( $content_width ) ) {
+	$content_width = 900;
+}
+
 /* Carga "format-chat.php" */
 require get_template_directory() . '/inc/chat-format.php';
 
@@ -281,7 +286,7 @@ function coki_comments( $comment, $args, $depth ) {
 				<?php endif; ?>
 
 				<div class="reply">
-					<?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+					<?php comment_reply_link( array_merge( $args, array( 'add_below' => 'comment', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 				</div>
 
 			</div>
