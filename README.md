@@ -1,4 +1,4 @@
-# Coki 1.0.0 - Beta 5
+# Coki 1.0.0 - Beta 6
 [![Build Status](https://travis-ci.org/ejner/Coki.svg?branch=master)](https://travis-ci.org/ejner/Coki)
 Tema para WordPress 4.7+. Simple, elegante, adaptable.
 
@@ -26,7 +26,7 @@ Además, es muy sencillo crear tu propio tema basandote en Coki. La única dific
 Coki es [software libre](https://www.gnu.org/philosophy/free-sw.es.html) y se distribuye bajo licencia [GNU General Public License v2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html). Goce la libertad (pero respete la licencia).
 
 ## Hoja de ruta
-### 1.0.0 - Beta 6 *(siguiente versión)*
+### 1.0.0 - Beta 6 *(actualmente en desarrollo)*
 1. Versión reservada para cosas maravillosas
 
 ### 1.0.0 - RC1
