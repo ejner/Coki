@@ -2,9 +2,12 @@
 	Theme Name: Coki
 	Theme URI: http://ejner.galaz.me/
 	Description: Diseño para blog personal
-	Version: 1.0.0-beta.5
+	Version: 1.0.0-beta.6
 	Author: Ejner Galaz
 	Author URI: http://galaz.me/
+	License: GNU General Public License v2
+	License URI: http://www.gnu.org/licenses/gpl-2.0.html
+	Text Domain: coki
 */
 /* Valores Generales */
 @import url('https://fonts.googleapis.com/css?family=Nunito|Nunito+Sans|Ubuntu+Mono');
@@ -201,10 +204,10 @@ main.content i.type {
 main.content.search i.type.unique {
   background-color: #795548;
 }
-section h2 .title-page {
+section .title-page {
   font-size: 3rem;
   display: inline-block;
-  margin-bottom: 2.5rem;
+  margin: 0;
 }
 section i.type.unique {
   top: 0;
@@ -228,13 +231,14 @@ article img {
   max-width: 100%;
   height: auto;
 }
-article h2 .title-post {
+article .title-post {
   text-decoration: none;
   color: #131313;
   font-size: 3rem;
   transition: color .3s linear;
+  margin: 0;
 }
-article h2 a:hover {
+article .title-post a:hover {
   color: #009688;
 }
 article .details ul {
