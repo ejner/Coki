@@ -31,8 +31,10 @@ require get_template_directory() . '/inc/chat-format.php';
 
 
 /* Carga "plugin-update-checker.php" */
-require get_template_directory() . '/inc/puc/plugin-update-checker.php';
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker( 'http://galaz.me/pseudo-api/coki.json', __FILE__, 'coki' );
+if ( file_exists( '/inc/puc/plugin-update-checker.php' ) ) {
+	require get_template_directory() . '/inc/puc/plugin-update-checker.php';
+	$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker( 'http://galaz.me/pseudo-api/coki.json', __FILE__, 'coki' );
+}
 
 /**
  * Define parámetros básicos del theme y desactiva funciones del núcleo que no se usarán
