@@ -1,0 +1,3 @@
+[submodule "Plugin Update Checker"]
+	path = inc/puc
+	url = https://github.com/YahnisElsts/plugin-update-checker/tree/v4.0.3
