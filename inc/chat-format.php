@@ -47,7 +47,7 @@ function my_format_chat_content( $content ) {
 	$_post_format_chat_ids = array();
 
 	/* Allow the separator (separator for speaker/text) to be filtered. */
-	$separator = apply_filters( 'my_post_format_chat_separator', ':' );
+	$separator = apply_filters( 'my_post_format_chat_separator', ': ' );
 
 	/* Open the chat transcript div and give it a unique ID based on the post ID. */
 	$chat_output = "\n\t\t\t" . '<div id="chat-transcript-' . esc_attr( get_the_ID() ) . '" class="chat-transcript">';
