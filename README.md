@@ -12,7 +12,6 @@ Tema para WordPress 4.7+. Simple, elegante, adaptable.
 + Listo para traducir a otros idiomas
 + Diseño adaptable
 + Código legible
-+ Barra para compartir artículos en redes sociales
 + No depende de plugins para funcionar correctamente
 
 Además, es muy sencillo crear tu propio tema basandote en Coki. La única dificultad es mi terquedad por tener todo documentado en español (my english is very bad, sorry)
@@ -27,7 +26,10 @@ Coki es [software libre](https://www.gnu.org/philosophy/free-sw.es.html) y se di
 
 ## Hoja de ruta
 ### 1.0.0 - Beta 6 *(actualmente en desarrollo)*
-1. Versión reservada para cosas maravillosas
+1. Añadir plantillas faltantes
+2. Ajustes de diseño
+3. Ajuste de funciones
+4. Soporte para opciones personalizadas
 
 ### 1.0.0 - RC1
 1. Pulir todo lo humanamente pulible
@@ -49,11 +51,10 @@ Algo hermoso del software libre es la posibilidad de tomar el trabajo creado por
 Además, Coki utiliza porciones de código (es decir, partes pequeñitas de algo más grande) creadas por terceros. Su nombre, autor, licencia (si existe) y donde se utilizan, se citan acontinuación:
 
 + [Post Formats: Chat](http://justintadlock.com/archives/2012/08/21/post-formats-chat) publicado por Justin Tadlock
- + Se utiliza para encapsular los Formato de Entrada en diferentes ``<div>`` y darle estilos de forma más sencilla.
+ + Se utiliza para encapsular los Formato de Entrada "Chat" en diferentes ``<div>`` y darle estilos de forma más sencilla.
 
 ### Software utilizado
 Finalmente, para crear Coki he utilizado los siguientes programas y/o servicios. No era necesario que los citara, pero lo haré por que puedo. Su nombre y que es, se citan acontinuación:
-+ Notepad++: excelente editor
 + Visual Studio Code: otro excelente editor
 + IcoMoon.com: para crear fuentes en base a "icon fonts"
 + AppServ: servidor local con Apache, MySQL, PHP y phpMyAdmin
