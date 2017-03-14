@@ -1,1 +1,29 @@
-# Nada por ahora
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        - php
+        - javascript
+  csslint:
+    enabled: true
+  eslint:
+    enabled: true
+    env:
+      jquery: true
+  fixme:
+    enabled: true
+  phpcodesniffer:
+    enabled: true
+    config:
+      standard: "WordPress"
+
+ratings:
+  paths:
+    - "**.js"
+    - "**.php"
+    - "**.css"
+
+exclude_paths:
+  - css/*{.,-}min.css
+  - js/*{.,-}min.js
