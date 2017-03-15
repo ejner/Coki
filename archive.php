@@ -1,6 +1,6 @@
 <?php
 /**
- * Plantilla de autores
+ * Plantilla de archivo
  *
  * @package Coki
  * @version 1.0
@@ -9,14 +9,15 @@
 
 get_header(); ?>
 
-	<main class="content author clear">
+	<main class="content archive clear">
 		<!-- section -->
 		<section class="small-post">
 
 		<?php if ( have_posts() ) : ?>
 
-			<?php coki_icon( 'author unique', '#CDDC39' ); ?>
-			<h1 class="title-page"><?php printf( esc_html__( 'Artículos de %s', 'coki' ), get_the_author() ); ?></h2>
+			<?php coki_icon( 'category unique' ); ?>
+			<?php the_archive_title( '<h1 class="title-page">', '</h1>' ); ?>
+			<?php the_archive_description( '<p>', '</p>' ); ?>
 
 		<?php
 			while ( have_posts() ) : the_post();
@@ -30,9 +31,9 @@ get_header(); ?>
 
 			<!-- article -->
 			<article>
-				<?php coki_icon( 'author' ); ?>
-				<h2><span class="post-title"><?php esc_html_e( 'Es muy tímido para publicar', 'coki' ); ?></span></h2>
-				<p><?php esc_html_e( 'Tal vez le da vergüenza publicar, pero es muy probable que cuando lo haga, escriba cosas sorprendentes.', 'coki' ); ?></p>
+				<?php coki_icon(); ?>
+				<h2 class="title-page"><?php esc_html_e( 'Sin resultados', 'coki' ); ?></h2>
+				<p><?php esc_html_e( 'No se han encontrado resultados. Esto es muy triste y decepcionante.', 'coki' ); ?></p>
 			</article>
 			<!-- /article -->
 

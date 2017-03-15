@@ -180,6 +180,9 @@ function coki_icon( $icon = null, $color = null ) {
 	/* O un formato de entrada */
 	} elseif ( has_post_format( $format ) ) {
 		$format = get_post_format();
+	// O es un adjunto.
+	} elseif ( is_attachment() ) {
+		$format = 'attachment';
 	/* Y si no es ninguno, lo asume como 'standard' */
 	} else {
 		$format = 'standard';
