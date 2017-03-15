@@ -1,6 +1,6 @@
 <?php
 /**
- * Plantilla de artículos
+ * Plantilla de adjuntos
  *
  * @package Coki
  * @version 1.0
@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-	<main class="content single clear">
+	<main class="content attachment clear">
 		<!-- section -->
 		<section class="clear">
 

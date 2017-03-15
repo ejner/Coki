@@ -1,6 +1,6 @@
 <?php
 /**
- * Plantilla de búsqueda
+ * Plantilla de etiquetas
  *
  * @package Coki
  * @version 1.0
@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-	<main class="content search clear">
+	<main class="content tags clear">
 		<!-- section -->
 		<section class="small-post">
 			
