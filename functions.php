@@ -21,12 +21,12 @@ function coki_version() {
 	return $theme->get( 'Version' );
 }
 
-/* Define ancho del tema */
+// Define ancho del tema.
 if ( ! isset( $content_width ) ) {
 	$content_width = 900;
 }
 
-/* Carga "format-chat.php" */
+// Carga "format-chat.php".
 require get_template_directory() . '/inc/chat-format.php';
 
 /**
@@ -66,23 +66,18 @@ add_action( 'after_setup_theme', 'coki_setup' );
  * @since 1.0.0
  */
 function coki_enqueue() {
-	/* Normalize 5.0.0 */
 	wp_register_style( 'normalize', get_template_directory_uri() . '/css/normalize.min.css', array(), '5.0.0', 'all' );
 	wp_enqueue_style( 'normalize' );
 
-	/* Coki */
 	wp_register_style( 'coki', get_template_directory_uri() . '/style.css', array(), coki_version(), 'all' );
 	wp_enqueue_style( 'coki' );
 
-	/* Coki Icons */
 	wp_register_style( 'coki-font', get_template_directory_uri() . '/css/fonts.css', array(), coki_version(), 'all' );
 	wp_enqueue_style( 'coki-font' );
 
-	/* Modernizr 3.3.1 */
 	wp_register_script( 'modernizr', get_template_directory_uri() . '/js/modernizr.min.js', array(), '3.3.1', 'all' );
 	wp_enqueue_script( 'modernizr' );
 
-	/* Respuestas en comentarios */
 	if ( is_singular() ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
@@ -168,30 +163,30 @@ function coki_icon( $icon = null, $color = null ) {
 	$color = esc_html( $color );
 	$color = trim( $color );
 
-	/* Si es una entrada protegida */
+	// Si es una entrada protegida.
 	if ( post_password_required() ) {
 		$format = 'private';
-	/* Si no, verifica si $icon esta definido */
+	// Si no, verifica si $icon esta definido.
 	} elseif ( ! empty( $icon ) ) {
 		$format = $icon;
-	/* O una entrada fijada */
+	// Mira si es una entrada fijada y en portada.
 	} elseif ( is_sticky() && is_front_page() ) {
 		$format = 'sticky';
-	/* O un formato de entrada */
+	// O un formato de entrada.
 	} elseif ( has_post_format( $format ) ) {
 		$format = get_post_format();
 	// O es un adjunto.
 	} elseif ( is_attachment() ) {
 		$format = 'attachment';
-	/* Y si no es ninguno, lo asume como 'standard' */
+	// Se aburre y lo define como "standard".
 	} else {
 		$format = 'standard';
 	}
-	/* Verifica si $color está definido, y si lo está, añade el color */
+	// Verifica si $color está definido, y si lo está, añade el color.
 	if ( ! empty( $color ) ) {
 		$color = ' style="background-color: ' . $color . '!important"';
 	}
-	/* Imprime el icono */
+	// Imprime el icono
 	echo '<i class="type coki-' . $format . '"' . $color . '></i>'; // WPCS: XSS OK.
 }
 
@@ -218,10 +213,10 @@ add_filter( 'video_embed_html', 'coki_responsive_embed' );
 function coki_time_published() {
 	$time_difference = current_time( 'timestamp' ) - get_the_time( 'U' );
 
-	/* Si la diferencia es menor a 86400 segundos (24 horas) */
+	// Si la diferencia es menor a 86400 segundos (24 horas).
 	if ( $time_difference < 86400 ) {
 		$return = sprintf( __( 'Hace %s atrás', 'coki' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) );
-	/* Si es mayor a 86400 segundos */
+	// Si es mayor a 86400 segundos.
 	} else {
 		$return = sprintf( __( '%1$s a las %2$s', 'coki' ), esc_html( get_the_date() ), esc_html( get_the_time() ) );
 	}
@@ -237,10 +232,10 @@ function coki_url_link() {
 	if ( has_post_format( 'link' ) ) {
 		$content = get_the_content();
 
-		/* Verifica si existe una etiqueta <a> y extrae el enlace */
+		// Verifica si existe una etiqueta <a> y extrae el enlace.
 		if ( get_url_in_content( $content ) ) {
 			echo get_url_in_content( $content ); // WPCS: XSS OK.
-		/* Si no existe, verifica que exista un enlace en el contenido */
+		// Si no existe, verifica que exista un enlace en el contenido.
 		} elseif ( preg_match( '/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/', $content, $matches ) ) {
 			echo esc_url_raw( $matches[0] );
 		}
