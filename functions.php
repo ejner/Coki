@@ -72,7 +72,7 @@ function coki_enqueue() {
 	wp_register_style( 'coki', get_template_directory_uri() . '/style.css', array(), coki_version(), 'all' );
 	wp_enqueue_style( 'coki' );
 
-	wp_register_style( 'coki-font', get_template_directory_uri() . '/css/fonts.css', array(), coki_version(), 'all' );
+	wp_register_style( 'coki-font', get_template_directory_uri() . '/css/fonts.lib.css', array(), coki_version(), 'all' );
 	wp_enqueue_style( 'coki-font' );
 
 	wp_register_script( 'modernizr', get_template_directory_uri() . '/js/modernizr.min.js', array(), '3.3.1', 'all' );
