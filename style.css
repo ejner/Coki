@@ -10,12 +10,12 @@
 	Text Domain: coki
 */
 /* Valores Generales */
-@import url('https://fonts.googleapis.com/css?family=Nunito|Nunito+Sans|Ubuntu+Mono');
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web|Ubuntu+Mono');
 html {
   font-size: 17px;
 }
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Titillium Web', sans-serif;
   letter-spacing: 0.02rem;
   word-wrap: break-word;
   color: #232323;
@@ -29,7 +29,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Nunito Sans', sans-serif;
   line-height: 200%;
 }
 .wrap {
@@ -171,6 +170,9 @@ header img.avatar {
   border-radius: 7rem;
   background-color: #9E9E9E;
 }
+header .blog-name {
+  display: none;
+}
 header .menu ul {
   list-style-type: none;
   padding: 0;
@@ -238,7 +240,7 @@ article .title-post {
   transition: color .3s linear;
   margin: 0;
 }
-article .title-post a:hover {
+article a.title-post:hover {
   color: #009688;
 }
 article .details ul {
@@ -291,7 +293,6 @@ article.format-status h2 {
 }
 article.format-status .content-post {
   font-size: 2rem;
-  font-family: 'Nunito Sans', sans-serif;
 }
 article.format-status i.type {
   background-color: #00BCD4;
@@ -299,43 +300,43 @@ article.format-status i.type {
 article.format-link i.type {
   background-color: #2196F3;
 }
-article.format-link h2 a:hover {
+article.format-link a.title-post:hover {
   color: #2196F3;
 }
 article.format-image i.type {
   background-color: #FF5722;
 }
-article.format-image h2 a:hover {
+article.format-image a.title-post:hover {
   color: #FF5722;
 }
 article.format-gallery i.type {
   background-color: #E91E63;
 }
-article.format-gallery h2 a:hover {
+article.format-gallery a.title-post:hover {
   color: #E91E63;
 }
 article.format-audio i.type {
   background-color: #3F51B5;
 }
-article.format-audio h2 a:hover {
+article.format-audio a.title-post:hover {
   color: #3F51B5;
 }
 article.format-video i.type {
   background-color: #f44336;
 }
-article.format-video h2 a:hover {
+article.format-video a.title-post:hover {
   color: #f44336;
 }
 article.format-aside i.type {
   background-color: #4CAF50;
 }
-article.format-aside h2 a:hover {
+article.format-aside a.title-post:hover {
   color: #4CAF50;
 }
 article.format-chat i.type {
   background-color: #9C27B0;
 }
-article.format-chat h2 a:hover {
+article.format-chat a.title-post:hover {
   color: #9C27B0;
 }
 article.format-chat .chat-row {
@@ -442,7 +443,6 @@ article.page h2 a:hover {
   width: 90%;
   padding: 0.8rem;
   font-size: 1rem;
-  font-family: 'Nunito', sans-serif;
 }
 .comments-area .comment-form input:not([type="submit"]) {
   width: 90%;

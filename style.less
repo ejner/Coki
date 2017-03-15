@@ -33,14 +33,14 @@
 }
 
 /* Valores Generales */
-@import url('https://fonts.googleapis.com/css?family=Nunito|Nunito+Sans|Ubuntu+Mono');
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web|Ubuntu+Mono');
 
 html {
     font-size: 17px;
 }
 
 body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Titillium Web', sans-serif;
     letter-spacing: 0.02rem;
     word-wrap: break-word;
     color: #232323;
@@ -56,7 +56,6 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Nunito Sans', sans-serif;
 	line-height: 200%;
 }
 
@@ -225,6 +224,10 @@ header {
         background-color: @gris;
     }
 
+	.blog-name {
+		display: none;
+	}
+
     .menu ul {
         list-style-type: none;
         padding: 0;
@@ -310,11 +313,11 @@ article {
         font-size: 3rem;
         transition: color .3s linear;
 		margin: 0;
-
-		a:hover {
-			color: @standard;
-		}
     }
+
+	a.title-post:hover {
+		color: @standard;
+	}
 
     .details ul {
     padding: 0;
@@ -379,7 +382,6 @@ article {
 
         .content-post {
             font-size: 2rem;
-            font-family: 'Nunito Sans', sans-serif;
         }
 
         i.type {
@@ -392,7 +394,7 @@ article {
             .background(@link);
         }
 
-        h2 a:hover {
+        a.title-post:hover {
             color: @link;
         }
     }
@@ -402,7 +404,7 @@ article {
             .background(@image);
         }
 
-        h2 a:hover {
+        a.title-post:hover {
             color: @image;
         }
     }
@@ -412,7 +414,7 @@ article {
             .background(@gallery);
         }
 
-        h2 a:hover {
+        a.title-post:hover {
             color: @gallery;
         }
     }
@@ -422,7 +424,7 @@ article {
             .background(@audio);
         }
 
-        h2 a:hover {
+        a.title-post:hover {
             color: @audio;
         }
     }
@@ -432,7 +434,7 @@ article {
             .background(@video);
         }
 
-        h2 a:hover {
+        a.title-post:hover {
             color: @video;
         }
     }
@@ -442,7 +444,7 @@ article {
             .background(@aside);
         }
 
-        h2 a:hover {
+        a.title-post:hover {
             color: @aside;
         }
     }
@@ -452,7 +454,7 @@ article {
             .background(@chat);
         }
 
-        h2 a:hover {
+        a.title-post:hover {
             color: @chat;
         }
 
@@ -607,7 +609,6 @@ article {
 			width: 90%;
 			padding: 0.8rem;
 			font-size: 1rem;
-			font-family: 'Nunito', sans-serif;
 		}
 
 		input:not([type="submit"]) {
