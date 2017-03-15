@@ -16,16 +16,7 @@ get_header(); ?>
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	
 			<!-- article -->
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				
-			<?php if ( has_post_thumbnail() ) { ?>
-				<!-- .post thumbnail -->
-				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-					<?php the_post_thumbnail( 'single' ); ?>
-				</a>
-				<!-- /post thumbnail -->
-			<?php } ?>
-					
+			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>					
 
 				<!-- .type -->
 				<?php coki_icon( 'attachment' ); ?>
