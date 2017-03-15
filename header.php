@@ -28,6 +28,12 @@
 					<div class="logo floatleft">
 						<a href="<?php echo esc_url( home_url() ); ?>">
 							<?php echo get_avatar( get_option( 'admin_email' ), 120 ); ?>
+							<?php 
+								if ( is_home() ) {
+									echo '<h1 class="blog-name">' . get_bloginfo( 'name' ) . '</h1>';
+								} else {
+									echo '<h2 class="blog-name">' . get_bloginfo( 'name' ) . '</h2>';
+								} ?>
 						</a>
 					</div>
 					<!-- /.logo -->
