@@ -145,5 +145,5 @@ function my_format_chat_row_id( $chat_author ) {
 	$_post_format_chat_ids = array_unique( $_post_format_chat_ids );
 
 	/* Return the array key for the chat author and add "1" to avoid an ID of "0". */
-	return absint( array_search( $chat_author, $_post_format_chat_ids ) ) + 1;
+	return absint( array_search( $chat_author, $_post_format_chat_ids, true ) ) + 1;
 }

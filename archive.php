@@ -20,12 +20,12 @@ get_header(); ?>
 			<?php the_archive_description( '<p>', '</p>' ); ?>
 
 		<?php
-			while ( have_posts() ) : the_post();
+		while ( have_posts() ) : the_post();
 
-				// Carga plantilla del loop.
-				get_template_part( 'loop' );
+			// Carga plantilla del loop.
+			get_template_part( 'loop' );
 
-			endwhile;
+		endwhile;
 		?>
 		<?php else : ?>
 

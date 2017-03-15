@@ -26,4 +26,5 @@ ratings:
 
 exclude_paths:
   - css/*{.,-}min.css
+  - css/*{.,-}lib.css
   - js/*{.,-}min.js

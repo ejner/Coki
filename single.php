@@ -33,7 +33,7 @@ get_header(); ?>
 					
 			<?php if ( has_post_format( 'link' ) ) : ?>
 				<!-- post title -->
-				<h2><a href="<?php coki_url_link(); ?>" class="title-post" target="_blank" title="Visitar '<?php the_title(); ?>'"><?php the_title(); ?></a></h2>
+				<h1><a href="<?php coki_url_link(); ?>" class="title-post" target="_blank" title="Visitar '<?php the_title(); ?>'"><?php the_title(); ?></a></h1>
 				<!-- /post title -->
 
 				<!-- .content-post -->
@@ -45,13 +45,7 @@ get_header(); ?>
 			<?php else : ?>
 					
 				<!-- post title -->
-			<?php
-				if ( is_single() ) {
-					the_title( '<h1 class="title-post">', '</h1>' );
-				} else {
-					the_title( '<h2 class="title-post"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-				}
-			?>
+			<?php the_title( '<h1 class="title-post">', '</h1>' ); ?>
 				<!-- /post title -->
 
 				<!-- .details -->

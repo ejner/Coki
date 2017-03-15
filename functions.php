@@ -66,7 +66,7 @@ add_action( 'after_setup_theme', 'coki_setup' );
  * @since 1.0.0
  */
 function coki_enqueue() {
-	wp_register_style( 'normalize', get_template_directory_uri() . '/css/normalize.min.css', array(), '5.0.0', 'all' );
+	wp_register_style( 'normalize', get_template_directory_uri() . '/css/normalize.lib.css', array(), '5.0.0', 'all' );
 	wp_enqueue_style( 'normalize' );
 
 	wp_register_style( 'coki', get_template_directory_uri() . '/style.css', array(), coki_version(), 'all' );
@@ -259,7 +259,7 @@ function coki_comments( $comment, $args, $depth ) {
 		<li <?php comment_class( empty( $arg ) ); ?> id="comment-<?php comment_ID() ?>">
 
 			<?php
-				if ( 0 != $args['avatar_size'] ) {
+				if ( 0 !== $args['avatar_size'] ) {
 					echo get_avatar( $comment, $args['avatar_size'] );
 				}
 			?>
@@ -277,7 +277,7 @@ function coki_comments( $comment, $args, $depth ) {
 					<?php comment_text(); ?>
 				</div>
 
-				<?php if ( '0' == $comment->comment_approved ) : ?>
+				<?php if ( '0' === $comment->comment_approved ) : ?>
 				<div class="comment-awaiting-moderation">
 					<?php esc_html_e( 'Tu comentario está a la espera de moderación', 'coki' ); ?>
 				</div>
