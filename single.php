@@ -13,80 +13,14 @@ get_header(); ?>
 		<!-- section -->
 		<section class="clear">
 
-		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-	
-			<!-- article -->
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				
-			<?php if ( has_post_thumbnail() ) { ?>
-				<!-- .post thumbnail -->
-				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-					<?php the_post_thumbnail( 'single' ); ?>
-				</a>
-				<!-- /post thumbnail -->
-			<?php } ?>
-					
+		<?php
+		if ( have_posts() ) : while ( have_posts() ) : the_post();
 
-				<!-- .type -->
-				<?php coki_icon(); ?>
-				<!-- /.type -->
-					
-			<?php if ( has_post_format( 'link' ) ) : ?>
-				<!-- post title -->
-				<h1><a href="<?php coki_url_link(); ?>" class="title-post" target="_blank" title="Visitar '<?php the_title(); ?>'"><?php the_title(); ?></a></h1>
-				<!-- /post title -->
+			// Carga plantilla del loop.
+			get_template_part( 'loop' );
 
-				<!-- .content-post -->
-				<div class="content-post">
-					<?php the_excerpt(); ?>
-				</div>
-				<!-- /.content-post -->
-					
-			<?php else : ?>
-					
-				<!-- post title -->
-			<?php the_title( '<h1 class="title-post">', '</h1>' ); ?>
-				<!-- /post title -->
-
-				<!-- .details -->
-				<div class="details">
-					<ul class="details-list">
-						<li><?php coki_time_published(); ?></li>
-						<li><i class="coki-permalink"></i> <a href="<?php the_permalink(); ?>" title="<?php printf( esc_html__( 'Enlace permanente a \'%s\'', 'coki' ), get_the_title() ); ?>"><?php esc_html_e( 'Enlace permanente', 'coki' ); ?></a></li>
-					<?php if ( comments_open() ) { ?>
-						<li><i class="coki-comment"></i> <a href="<?php the_permalink(); ?>#comments"><?php comments_number( '0', '1', '%' ); ?></a></li>
-					<?php } ?>
-						<?php edit_post_link( sprintf( __( 'Editar <em>"%s"</em>', 'coki' ), get_the_title() ), '<li><i class=" coki-edit"></i> ', '</li>' ); ?>
-					</ul>
-				</div>
-				<!-- /.details -->
-
-				<!-- .content-post -->
-				<div class="content-post">
-					<?php the_content(); ?>
-				</div>
-				<!-- /.content-post -->
-					
-			<?php endif; ?>
-					
-				<?php wp_link_pages(); ?>
-				
-				 <!-- .details -->
-				<div class="details">
-					<ul class="meta-details">
-						<li><i class="coki-author"></i> <?php the_author_posts_link(); ?></li>
-						<li><i class="coki-category"></i> <?php the_category( ', ' ); ?></li>
-						<li><?php the_tags( '<i class="coki-tags"></i> ' ); ?></li>
-					</ul>
-				</details>
-				<!-- /.details -->
-					
-			</article>
-			<!-- /article -->
-
-			<?php comments_template(); ?> 
-
-		<?php endwhile; ?>
+		endwhile;
+		?>
 		<?php else : ?>
 
 			<!-- article -->
