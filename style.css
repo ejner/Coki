@@ -203,6 +203,12 @@ main.content i.type {
   color: #fff;
   background-color: #009688;
 }
+main.content i.type-info {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  left: -2.5rem;
+  top: 1rem;
+}
 main.content.search i.type.unique {
   background-color: #795548;
 }
@@ -217,7 +223,7 @@ section i.type.unique {
 section i.coki-sticky + i.mini-type {
   font-size: 1.2rem;
   padding: 0.5rem;
-  left: -2.7rem;
+  left: -2.5rem;
   top: 5rem;
 }
 section.small-post i.type:not(.unique) {
@@ -259,6 +265,18 @@ article .details ul li {
 }
 article .details ul li:first-child {
   padding-left: 0;
+}
+article .details ul li a.minimodal {
+  display: inline-block;
+  padding: 0.5rem;
+  background-color: #9E9E9E;
+  border-radius: 2rem;
+  color: #fff;
+  transition: background-color 0.3s linear, color 0.3s linear;
+}
+article .details ul li a.minimodal:hover {
+  background-color: #009688;
+  border-radius: 4rem;
 }
 article .embed-container {
   position: relative;

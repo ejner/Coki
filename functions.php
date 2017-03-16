@@ -294,3 +294,30 @@ function coki_comments( $comment, $args, $depth ) {
 			<div class="clear"></div>
 <?php
 }
+
+/**
+ * Detalles de la entrada o página
+ *
+ * @since 1.0.0
+ *
+ * @param string $type Grupo de detalles a mostrar. Opcional.
+ */
+function coki_post_footer( $type = 'basic' ) {
+?>
+	<?php edit_post_link( '<i class="type type-info coki-edit"></i>' ); ?>
+
+	<ul class="details-list">
+	<?php if ( 'full' == $type || 'post' !== $type ) { ?>
+		<li><a href="#details-post-<?php the_ID(); ?>" class="minimodal"><?php coki_time_published(); ?></a></li>
+		<li><a href="<?php the_permalink(); ?>" class="minimodal" title="<?php printf( esc_html__( 'Enlace permanente a \'%s\'', 'coki' ), get_the_title() ); ?>"><i class="coki-permalink"></i> <?php esc_html_e( 'Enlace permanente', 'coki' ); ?></a></li>
+	<?php } ?>
+	<?php if ( comments_open() && 'page' !== $type ) { ?>
+		<li><a href="<?php the_permalink(); ?>#comments" class="minimodal"><i class="coki-comment"></i> <?php comments_number( '0', '1', '%' ); ?></a></li>
+	<?php } ?>
+	<?php if ( 'full' === $type || 'post' === $type ) { ?>
+		<li><i class="coki-category"></i> <?php the_category( ', ' ); ?></li>
+		<li><?php the_tags( '<i class="coki-tags"></i> ' ); ?></li>
+	<?php } ?>
+	</ul>
+<?php
+}

@@ -48,14 +48,7 @@
 			<?php if ( is_single() ) { ?>
 				<!-- .details -->
 				<div class="details">
-					<ul class="details-list">
-						<li><?php coki_time_published(); ?></li>
-						<li><i class="coki-permalink"></i> <a href="<?php the_permalink(); ?>" title="<?php printf( esc_html__( 'Enlace permanente a \'%s\'', 'coki' ), get_the_title() ); ?>"><?php esc_html_e( 'Enlace permanente', 'coki' ); ?></a></li>
-					<?php if ( comments_open() ) { ?>
-						<li><i class="coki-comment"></i> <a href="<?php the_permalink(); ?>#comments"><?php comments_number( '0', '1', '%' ); ?></a></li>
-					<?php } ?>
-						<?php edit_post_link( sprintf( __( 'Editar <em>"%s"</em>', 'coki' ), get_the_title() ), '<li><i class=" coki-edit"></i> ', '</li>' ); ?>
-					</ul>
+					<?php coki_post_footer( 'basic' ); ?>
 				</div>
 				<!-- /.details -->
 			<?php } ?>
@@ -74,21 +67,12 @@
 
 				<!-- .details -->
 				<div class="details">
-			<?php if ( is_single() ) { ?>
-					<ul class="meta-list">
-						<li><i class="coki-author"></i> <?php the_author_posts_link(); ?></li>
-						<li><i class="coki-category"></i> <?php the_category( ', ' ); ?></li>
-						<li><?php the_tags( '<i class="coki-tags"></i> ' ); ?></li>
-			<?php } else { ?>
-					<ul class="details-list">
-						<li><?php coki_time_published(); ?></li>
-						<li><i class="coki-permalink"></i> <a href="<?php the_permalink(); ?>" title="<?php sprintf( __( 'Enlace permanente a \'%s\'', 'coki' ), get_the_title() ); ?>">Enlace permanente</a></li>
-					<?php if ( comments_open() ) { ?>
-						<li><i class="coki-comment"></i> <a href="<?php the_permalink(); ?>#comments"><?php comments_number( '0', '1', '%' ); ?></a></li>
-					<?php } ?>
-						<?php edit_post_link( sprintf( __( 'Editar <em>"%s"</em>', 'coki' ), get_the_title() ), '<li><i class=" coki-edit"></i> ', '</li>' ); ?>
-			<?php } ?>
-					</ul>
+			<?php
+				if ( is_single() ) {
+					coki_post_footer( 'post' );
+				} else {
+					coki_post_footer( 'basic' );
+				} ?>
 				</div>
 				<!-- /.details -->
 					
