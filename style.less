@@ -282,6 +282,13 @@ section {
         top: 0;
     }
 
+	i.coki-sticky + i.mini-type {
+		font-size: 1.2rem;
+		padding: 0.5rem;
+		left: -2.7rem;
+		top: 5rem;
+	}
+
     &.small-post {
         i.type:not(.unique) {
             padding: 0.5rem;
@@ -527,11 +534,11 @@ article {
     }
 
     &.sticky {
-        i.type {
+        i.coki-sticky {
              .background(@sticky);
         }
 
-        h2 a:hover {
+        a.title-post:hover {
             color: @sticky;
         }
     }

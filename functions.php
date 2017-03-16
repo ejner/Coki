@@ -129,8 +129,8 @@ add_action( 'init', 'coki_register_menu' );
  *
  * @since 1.0.0
  *
- * @param string $prev Enlace "Anterior".
- * @param string $next Enlace "Siguiente".
+ * @param string $prev Enlace "Anterior". Opcional.
+ * @param string $next Enlace "Siguiente". Opcional.
  */
 function coki_pagination( $prev = '&laquo;', $next = '&raquo;' ) {
 	global $wp_query;
@@ -154,8 +154,8 @@ add_action( 'init', 'coki_pagination' );
  *
  * @since 1.0.0
  *
- * @param string $icon Icono a mostrar.
- * @param string $color Color de fondo a mostrar.
+ * @param string $icon Icono a mostrar. Opcional.
+ * @param string $color Color de fondo a mostrar. Opcional.
  */
 function coki_icon( $icon = null, $color = null ) {
 	$format = array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' );
@@ -169,10 +169,7 @@ function coki_icon( $icon = null, $color = null ) {
 	// Si no, verifica si $icon esta definido.
 	} elseif ( ! empty( $icon ) ) {
 		$format = $icon;
-	// Mira si es una entrada fijada y en portada.
-	} elseif ( is_sticky() && is_front_page() ) {
-		$format = 'sticky';
-	// O un formato de entrada.
+	// Mira si es un formato de entrada.
 	} elseif ( has_post_format( $format ) ) {
 		$format = get_post_format();
 	// O es un adjunto.
@@ -186,8 +183,13 @@ function coki_icon( $icon = null, $color = null ) {
 	if ( ! empty( $color ) ) {
 		$color = ' style="background-color: ' . $color . '!important"';
 	}
+
+	// Si es una entrada fijada.
+	if ( is_sticky() && is_home() ) {
+		echo '<i class="type coki-sticky"></i>';
+	}
 	// Imprime el icono
-	echo '<i class="type coki-' . $format . '"' . $color . '></i>'; // WPCS: XSS OK.
+	echo '<i class="type mini-type coki-' . $format . '"' . $color . '></i>'; // WPCS: XSS OK.
 }
 
 /**
@@ -196,7 +198,7 @@ function coki_icon( $icon = null, $color = null ) {
  *
  * @since 1.0.0
  *
- * @param string $html URL oEmbed.
+ * @param string $html URL oEmbed. Obligatorio.
  */
 function coki_responsive_embed( $html ) {
 	return '<div class="embed-container">' . $html . '</div>';
@@ -249,9 +251,9 @@ function coki_url_link() {
  *
  * @link https://codex.wordpress.org/Function_Reference/wp_list_comments
  *
- * @param string $comment Comentario.
- * @param string $args Argumentos.
- * @param string $depth Profundidad.
+ * @param string $comment Comentario. Obligatorio.
+ * @param string $args Argumentos. Obligatorio.
+ * @param string $depth Profundidad. Obligatorio.
  */
 function coki_comments( $comment, $args, $depth ) {
 	$arg = ( $args['has_children'] ) ? 'clear' : 'parent clear';

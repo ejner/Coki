@@ -214,6 +214,12 @@ section .title-page {
 section i.type.unique {
   top: 0;
 }
+section i.coki-sticky + i.mini-type {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  left: -2.7rem;
+  top: 5rem;
+}
 section.small-post i.type:not(.unique) {
   padding: 0.5rem;
   font-size: 1.9rem;
@@ -383,10 +389,10 @@ article.format-chat .chat-row.chat-speaker-6 .chat-author {
 article.format-chat .chat-row.chat-speaker-6 .chat-text {
   background-color: #b06e27;
 }
-article.sticky i.type {
+article.sticky i.coki-sticky {
   background-color: #FFC107;
 }
-article.sticky h2 a:hover {
+article.sticky a.title-post:hover {
   color: #FFC107;
 }
 article.page i.type {
