@@ -48,7 +48,7 @@
 			<?php if ( is_single() ) { ?>
 				<!-- .details -->
 				<div class="details">
-					<?php coki_post_footer( 'basic' ); ?>
+					<?php coki_post_footer(); ?>
 				</div>
 				<!-- /.details -->
 			<?php } ?>
@@ -69,9 +69,9 @@
 				<div class="details">
 			<?php
 				if ( is_single() ) {
-					coki_post_footer( 'post' );
+					coki_post_footer( 'single' );
 				} else {
-					coki_post_footer( 'basic' );
+					coki_post_footer();
 				} ?>
 				</div>
 				<!-- /.details -->

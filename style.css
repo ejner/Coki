@@ -192,7 +192,7 @@ main.content {
   float: right;
   position: relative;
 }
-main.content i.type {
+main.content .type {
   display: block;
   position: absolute;
   padding: 1rem;
@@ -203,7 +203,7 @@ main.content i.type {
   color: #fff;
   background-color: #009688;
 }
-main.content i.type-info {
+main.content .type-info {
   font-size: 1.2rem;
   padding: 0.5rem;
   left: -2.5rem;
@@ -267,7 +267,7 @@ article .details ul li:first-child {
   padding-left: 0;
 }
 article .details ul li a.minimodal {
-  display: inline-block;
+  display: block;
   padding: 0.5rem;
   background-color: #9E9E9E;
   border-radius: 2rem;
@@ -277,6 +277,13 @@ article .details ul li a.minimodal {
 article .details ul li a.minimodal:hover {
   background-color: #009688;
   border-radius: 4rem;
+}
+article .details ul li a.minimodal img.miniavatar {
+  display: block;
+  width: 1.2rem;
+  margin: 0 auto;
+  height: auto;
+  border-radius: 3rem;
 }
 article .embed-container {
   position: relative;
