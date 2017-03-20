@@ -308,16 +308,16 @@ function coki_post_footer( $type = 'home' ) {
 
 	<ul class="details-list">
 	<?php if ( 'home' === $type && ! is_single() || 'page' === $type ) { ?>
-		<li><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" class="minimodal"><img src="<?php echo get_avatar_url( get_the_author_meta( 'ID' ) ); ?>" class="miniavatar" /></a></li>
+		<li><a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" class="minimodal"><?php echo get_avatar( get_the_author_meta( 'ID' ) ); ?></a></li>
 	<?php } ?>
-	<?php if ( 'single' !== $type) { ?>
+	<?php if ( 'single' !== $type ) { ?>
 		<li><a href="<?php the_permalink(); ?>" class="minimodal" title="<?php printf( esc_html__( 'Enlace permanente a \'%s\'', 'coki' ), get_the_title() ); ?>"><?php coki_time_published(); ?></a></li>
 	<?php } ?>
 	<?php if ( comments_open() && 'page' !== $type ) { ?>
 		<li><a href="<?php the_permalink(); ?>#comments" class="minimodal"><i class="coki-comment"></i> <?php comments_number( '0', '1', '%' ); ?></a></li>
 	<?php } ?>
 	<?php if ( 'single' === $type ) { ?>
-		<li><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" class="minimodal"><img src="<?php echo get_avatar_url( get_the_author_meta( 'ID' ) ); ?>" class="miniavatar" /></a></li>
+		<li><a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" class="minimodal"><?php echo get_avatar( get_the_author_meta( 'ID' ) ); ?></a></li>
 		<li><i class="coki-category"></i> <?php the_category( ', ' ); ?></li>
 		<li><?php the_tags( '<i class="coki-tags"></i> ' ); ?></li>
 	<?php } ?>
