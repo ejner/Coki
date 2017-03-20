@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Coki';
   src:
-    url('Coki.ttf?648ta3') format('truetype'),
-    url('Coki.woff?648ta3') format('woff'),
-    url('Coki.svg?648ta3#Coki') format('svg');
+    url('Coki.ttf?7k88km') format('truetype'),
+    url('Coki.woff?7k88km') format('woff'),
+    url('Coki.svg?7k88km#Coki') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,32 +23,26 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.coki-home:before {
-  content: "\e88a";
-}
 .coki-time:before {
-  content: "\e191";
-}
-.coki-top:before {
-  content: "\e5d8";
+  content: "\e855";
 }
 .coki-aside:before {
   content: "\e85d";
 }
-.coki-author:before {
-  content: "\e85e";
-}
 .coki-attachment:before {
-  content: "\e2bc";
+  content: "\e226";
 }
-.coki-sticky:before {
-  content: "\e8e6";
+.coki-audio:before {
+  content: "\e3a1";
 }
 .coki-image:before {
   content: "\e412";
 }
 .coki-gallery:before {
   content: "\e3b3";
+}
+.coki-comment:before {
+  content: "\e0ca";
 }
 .coki-standard:before {
   content: "\e14f";
@@ -59,45 +53,49 @@ i {
 .coki-menu:before {
   content: "\e3c7";
 }
+.coki-top:before {
+  content: "\e5ce";
+}
 .coki-results:before {
   content: "\e880";
 }
 .coki-private:before {
   content: "\e90d";
 }
+.coki-category:before {
+  content: "\e2c7";
+}
 .coki-quote:before {
   content: "\e244";
+}
+.coki-chat:before {
+  content: "\e8af";
+}
+.coki-sticky:before {
+  content: "\e838";
+}
+.coki-home:before {
+  content: "\e88a";
+}
+.coki-archive:before {
+  content: "\e156";
 }
 .coki-page:before {
   content: "\e24d";
 }
-.coki-permalink:before {
-  content: "\e157";
-}
 .coki-link:before {
   content: "\e89e";
-}
-.coki-category:before {
-  content: "\e02f";
 }
 .coki-video:before {
   content: "\e8da";
 }
-.coki-comment:before {
-  content: "\e253";
-}
-.coki-audio:before {
-  content: "\e405";
+.coki-tags:before {
+  content: "\e54e";
 }
 .coki-search:before {
   content: "\e8b6";
 }
-.coki-chat:before {
-  content: "\e0d8";
-}
-.coki-tags:before {
-  content: "\e41d";
-}
 .coki-status:before {
   content: "\e8dc";
 }
+
