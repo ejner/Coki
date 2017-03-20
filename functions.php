@@ -27,7 +27,7 @@ if ( ! isset( $content_width ) ) {
 }
 
 // Carga "format-chat.php".
-require get_template_directory() . '/inc/chat-format.php';
+require get_template_directory() . '/libs/chat/chat-format.php';
 
 /**
  * Define parámetros básicos del theme y desactiva funciones del núcleo que no se usarán
@@ -66,16 +66,16 @@ add_action( 'after_setup_theme', 'coki_setup' );
  * @since 1.0.0
  */
 function coki_enqueue() {
-	wp_register_style( 'normalize', get_template_directory_uri() . '/css/normalize.lib.css', array(), '5.0.0', 'all' );
+	wp_register_style( 'normalize', get_template_directory_uri() . '/libs/normalize.css', array(), '5.0.0', 'all' );
 	wp_enqueue_style( 'normalize' );
 
 	wp_register_style( 'coki', get_template_directory_uri() . '/style.css', array(), coki_version(), 'all' );
 	wp_enqueue_style( 'coki' );
 
-	wp_register_style( 'coki-font', get_template_directory_uri() . '/css/fonts.lib.css', array(), coki_version(), 'all' );
+	wp_register_style( 'coki-font', get_template_directory_uri() . '/libs/fonts/style.css', array(), coki_version(), 'all' );
 	wp_enqueue_style( 'coki-font' );
 
-	wp_register_script( 'modernizr', get_template_directory_uri() . '/js/modernizr.min.js', array(), '3.3.1', 'all' );
+	wp_register_script( 'modernizr', get_template_directory_uri() . '/libs/modernizr/modernizr.min.js', array(), '3.3.1', 'all' );
 	wp_enqueue_script( 'modernizr' );
 
 	if ( is_singular() ) {
