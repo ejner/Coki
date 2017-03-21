@@ -66,7 +66,7 @@ add_action( 'after_setup_theme', 'coki_setup' );
  * @since 1.0.0
  */
 function coki_enqueue() {
-	wp_register_style( 'normalize', get_template_directory_uri() . '/libs/normalize.css', array(), '5.0.0', 'all' );
+	wp_register_style( 'normalize', get_template_directory_uri() . '/libs/normalize/normalize.css', array(), '5.0.0', 'all' );
 	wp_enqueue_style( 'normalize' );
 
 	wp_register_style( 'coki', get_template_directory_uri() . '/style.css', array(), coki_version(), 'all' );
