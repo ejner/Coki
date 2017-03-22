@@ -103,8 +103,8 @@ function my_format_chat_content( $content ) {
 				/* Close the chat row. */
 				$chat_output .= "\n\t\t\t</div><!-- .chat-row -->";
 			}
-		}
-	}
+		} // End if().
+	} // End foreach().
 
 	/* Close the chat transcript div. */
 	$chat_output .= "\n\t\t\t</div><!-- .chat-transcript -->\n";

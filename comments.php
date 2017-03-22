@@ -21,6 +21,7 @@ if ( post_password_required() ) {
 		<h2 class="comments-title">
 			<?php
 				printf( // WPCS: XSS OK.
+					/* translators: %s numero de comentarios */
 					esc_html( _nx( '%s comentario', '%s comentarios', get_comments_number(), 'título comentarios', 'coki' ) ),
 					number_format_i18n( get_comments_number() )
 				);
