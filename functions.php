@@ -214,15 +214,19 @@ add_filter( 'video_embed_html', 'coki_responsive_embed' );
  *
  * @param string $the_date La fecha. Obligatorio.
  * @param string $d Formato fecha PHP. Opcional.
- * @param int $post ID de la publicación.
+ * @param int $post ID de la publicación. Obligatorio.
  */
 function coki_post_time( $the_date, $d, $post ) {
 	$time_difference = current_time( 'timestamp' ) - get_the_time( 'U' );
 
 	if ( $time_difference < 86400 ) { // Si la diferencia es menor a 86400 segundos (24 horas).
-		$date = sprintf( __( 'Hace %s atrás', 'coki' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) );
+		$date = sprintf( /* translators: %s tiempo transcurrido desde la publicación. */
+				__( 'Hace %s atrás', 'coki' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) )
+			);
 	} else { // Si es mayor a 86400 segundos.
-		$date = sprintf( __( '%1$s a las %2$s', 'coki' ), esc_html( get_the_date() ), esc_html( get_the_time() ) );
+		$date = sprintf( /* translators: %1$s fecha - %2$s hora de la publicación. */
+				__( '%1$s a las %2$s', 'coki' ), esc_html( get_the_date() ), esc_html( get_the_time() )
+			);
 	}
 	$date = '<i class="coki-time"></i> <time class="date" datatime="' . date_i18n( get_the_time( 'Y-m-d\TH:i:s' ) ) . '">' . esc_attr( $date ) . '</time>';
 	return '<a href="' . get_the_permalink() . '" class="meta-link" >' . $date . '</a>';
@@ -274,7 +278,11 @@ function coki_comments( $comment, $args, $depth ) {
 				<span class="author"><?php echo get_comment_author_link() ?></span>
 
 				<ul class="details-comments">
-					<li><i class="coki-time"></i> <?php printf( esc_html__( '%1$s a las %2$s', 'coki' ), get_comment_date(),  get_comment_time() ); ?></li>
+					<li><i class="coki-time"></i> <?php
+						printf(
+							/* translators: %1$s fecha - %2$s hora del comentario. */
+							esc_html__( '%1$s a las %2$s', 'coki' ), get_comment_date(), get_comment_time()
+							); ?></li>
 					<li><i class="coki-permalink"></i> <a href="<?php echo esc_html( get_comment_link( $comment->comment_ID ) ); ?>"><?php esc_html_e( 'Enlace permanente', 'coki' ); ?></a></li>
 					<?php edit_comment_link( __( 'Editar comentario', 'coki' ), '<li><i class="coki-edit"></i> ', '</li>' ); ?>
 				</ul>
@@ -290,7 +298,17 @@ function coki_comments( $comment, $args, $depth ) {
 				<?php endif; ?>
 
 				<div class="reply">
-					<?php comment_reply_link( array_merge( $args, array( 'add_below' => 'comment', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+					<?php
+						comment_reply_link(
+							array_merge(
+								$args,
+								array(
+									'add_below' => 'comment',
+									'depth' => $depth,
+									'max_depth' => $args['max_depth']
+								)
+							)
+						); ?>
 				</div>
 
 			</div>
@@ -305,12 +323,16 @@ function coki_comments( $comment, $args, $depth ) {
  * @since 1.0.0
  *
  * @param array $args Grupo de detalles a mostrar. Obligatorio.
+ * @param string $container Etiqueta de obertura. Opcional.
+ * @param string $open Etiqueta de obertura items. Opcional.
+ * @param string $close Etiqueta de cierre items. Opcional.
  */
-function coki_post_meta( $args ) {
-	$open = '<li class="meta-item">';
-	$close = '</li>';
+function coki_post_meta( $args, $container = 'ul', $open = '<li class="meta-item">', $close = '</li>' ) {
+	$container = esc_attr( $container );
+	$open = wp_kses_normalize_entities( $open );
+	$close = wp_kses_normalize_entities( $close );
 
-	echo '<ul class="meta-list">';
+	echo '<' . $container . ' class="meta-list">';
 
 	if ( in_array( 'author', $args ) ) {
 		echo $open;
@@ -332,23 +354,19 @@ function coki_post_meta( $args ) {
 		echo $close;
 	}
 
-	if ( in_array( 'edit', $args ) ) {
-		edit_post_link( '<i class="type type-info coki-edit"></i>' );
-	}
-
-	if ( in_array( 'category', $args ) ) {
-		echo $open;
+	if ( in_array( 'category', $args ) || in_array( 'taxonomy', $args ) ) {
+		echo $open . '<i class="coki-category"></i> ';
 		the_category( ', ' );
 		echo $close;
 	}
 
-	if ( in_array( 'tags', $args ) ) {
+	if ( in_array( 'tags', $args ) || in_array( 'taxonomy', $args ) ) {
 		echo $open;
 		the_tags( '<i class="coki-tags"></i> ' );
 		echo $close;
 	}
 
-	echo '</ul>';
+	echo '</' . $container . '>';
 }
 
 /**
@@ -364,6 +382,6 @@ function cokie_author_link( $link ) {
 		/* translators: %s: nombre del autor */
 		esc_attr( sprintf( __( 'Publicado por %s', 'coki' ), get_the_author() ) ),
 		get_avatar( get_the_author_meta( 'ID' ) )
-    );
+	);
 }
-add_filter( 'the_author_posts_link', 'cokie_author_link', 10, 1 ); 
+add_filter( 'the_author_posts_link', 'cokie_author_link', 10, 1 );

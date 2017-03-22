@@ -22,7 +22,9 @@
 				<!-- .type -->
 				<?php coki_icon(); ?>
 				<!-- /.type -->
-					
+
+				<?php edit_post_link( '<i class="type type-info coki-edit"></i>' ); ?>
+
 			<?php if ( has_post_format( 'link' ) ) : ?>
 
 				<!-- post title -->
@@ -61,9 +63,9 @@
 				<div class="details">
 			<?php
 				if ( is_single() ) {
-					coki_post_meta( array( 'edit', 'author', 'category', 'tags' ) );
+					coki_post_meta( array( 'author', 'taxonomy' ) );
 				} else {
-					coki_post_meta( array( 'edit', 'author', 'date' ) );
+					coki_post_meta( array( 'author', 'date' ) );
 				} ?>
 				</div>
 				<!-- /.details -->

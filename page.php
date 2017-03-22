@@ -30,6 +30,8 @@ get_header(); ?>
 				<?php coki_icon( 'page' ); ?>
 				<!-- /.type -->
 
+				<?php edit_post_link( '<i class="type type-info coki-edit"></i>' ); ?>
+
 				<!-- .title-post -->
 				<?php the_title( '<h1 class="title-post">', '</h1>' ); ?>
 				<!-- /.title-post -->
@@ -42,7 +44,7 @@ get_header(); ?>
 
 				<!-- .details -->
 				<div class="details">
-					<?php coki_post_meta( array( 'edit', 'date' ) ); ?>
+					<?php coki_post_meta( array( 'date' ) ); ?>
 				</div>
 				<!-- /.details -->
 

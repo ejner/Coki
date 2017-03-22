@@ -16,7 +16,11 @@ get_header(); ?>
 		<?php if ( have_posts() ) : ?>
 
 			<?php coki_icon( 'results unique' ); ?>
-			<h1 class="title-page"><?php printf( esc_html__( 'Resultados para "%s"', 'coki' ), get_search_query() ); ?></h1>
+			<h1 class="title-page"><?php
+				printf( /* translators: %s término de búsqueda */
+					esc_html__( 'Resultados para "%s"', 'coki' ),
+					get_search_query()
+				); ?></h1>
 		
 		<?php
 			while ( have_posts() ) : the_post();
@@ -31,7 +35,11 @@ get_header(); ?>
 			<!-- article -->
 			<article>
 				<?php coki_icon( 'results' ); ?>
-				<h1 class="post-title"><?php printf( esc_html__( 'No hay resultados para "%s"', 'coki' ), get_search_query() ); ?></span></h1>
+				<h1 class="post-title"><?php
+					printf( /* translators: %s término de búsqueda */
+						esc_html__( 'No hay resultados para "%s"', 'coki' ),
+						get_search_query()
+					); ?></span></h1>
 				<p><?php esc_html_e( 'Prueba buscando con otras palabras. Si no funciona, prueba revisando que la palabra exista realmente. De cualquier forma, esto es indignante.', 'coki' ); ?></p>
 			</article>
 			<!-- /article -->
