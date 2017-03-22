@@ -207,23 +207,27 @@ add_filter( 'embed_oembed_html', 'coki_responsive_embed', 10, 3 );
 add_filter( 'video_embed_html', 'coki_responsive_embed' );
 
 /**
- * Obtiene fecha de publicación. Si es menor a 24 horas, la muestra de forma
- * humanizada, de lo contrario la muestra en el formato definido por el usuario
+ * Obtiene fecha de publicación, la "humaniza", y la envuelve con el enlace
+ * permanente del artículo.
  *
  * @since 1.0.0
+ *
+ * @param string $the_date La fecha. Obligatorio.
+ * @param string $d Formato fecha PHP. Opcional.
+ * @param int $post ID de la publicación.
  */
-function coki_time_published() {
+function coki_post_time( $the_date, $d, $post ) {
 	$time_difference = current_time( 'timestamp' ) - get_the_time( 'U' );
 
-	// Si la diferencia es menor a 86400 segundos (24 horas).
-	if ( $time_difference < 86400 ) {
-		$return = sprintf( __( 'Hace %s atrás', 'coki' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) );
-	// Si es mayor a 86400 segundos.
-	} else {
-		$return = sprintf( __( '%1$s a las %2$s', 'coki' ), esc_html( get_the_date() ), esc_html( get_the_time() ) );
+	if ( $time_difference < 86400 ) { // Si la diferencia es menor a 86400 segundos (24 horas).
+		$date = sprintf( __( 'Hace %s atrás', 'coki' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) );
+	} else { // Si es mayor a 86400 segundos.
+		$date = sprintf( __( '%1$s a las %2$s', 'coki' ), esc_html( get_the_date() ), esc_html( get_the_time() ) );
 	}
-	echo '<i class="coki-time"></i> <time class="date" datatime="' . date_i18n( get_the_time( 'Y-m-d\TH:i:s' ) ) . '">' . $return . '</time>'; // WPCS: XSS OK.
+	$date = '<i class="coki-time"></i> <time class="date" datatime="' . date_i18n( get_the_time( 'Y-m-d\TH:i:s' ) ) . '">' . esc_attr( $date ) . '</time>';
+	return '<a href="' . get_the_permalink() . '" class="meta-link" >' . $date . '</a>';
 }
+add_action( 'the_date', 'coki_post_time', 10, 3 );
 
 /**
  * Devuelve primera URL de un Format Post Link
@@ -300,27 +304,66 @@ function coki_comments( $comment, $args, $depth ) {
  *
  * @since 1.0.0
  *
- * @param string $type Grupo de detalles a mostrar. Opcional.
+ * @param array $args Grupo de detalles a mostrar. Obligatorio.
  */
-function coki_post_footer( $type = 'home' ) {
-?>
-	<?php edit_post_link( '<i class="type type-info coki-edit"></i>' ); ?>
+function coki_post_meta( $args ) {
+	$open = '<li class="meta-item">';
+	$close = '</li>';
 
-	<ul class="details-list">
-	<?php if ( 'home' === $type && ! is_single() || 'page' === $type ) { ?>
-		<li><a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" class="minimodal"><?php echo get_avatar( get_the_author_meta( 'ID' ) ); ?></a></li>
-	<?php } ?>
-	<?php if ( 'single' !== $type ) { ?>
-		<li><a href="<?php the_permalink(); ?>" class="minimodal" title="<?php printf( esc_html__( 'Enlace permanente a \'%s\'', 'coki' ), get_the_title() ); ?>"><?php coki_time_published(); ?></a></li>
-	<?php } ?>
-	<?php if ( comments_open() && 'page' !== $type ) { ?>
-		<li><a href="<?php the_permalink(); ?>#comments" class="minimodal"><i class="coki-comment"></i> <?php comments_number( '0', '1', '%' ); ?></a></li>
-	<?php } ?>
-	<?php if ( 'single' === $type ) { ?>
-		<li><a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" class="minimodal"><?php echo get_avatar( get_the_author_meta( 'ID' ) ); ?></a></li>
-		<li><i class="coki-category"></i> <?php the_category( ', ' ); ?></li>
-		<li><?php the_tags( '<i class="coki-tags"></i> ' ); ?></li>
-	<?php } ?>
-	</ul>
-<?php
+	echo '<ul class="meta-list">';
+
+	if ( in_array( 'author', $args ) ) {
+		echo $open;
+		the_author_posts_link();
+		echo $close;
+	}
+
+	if ( in_array( 'comments', $args ) && comments_open() ) {
+		echo $open . '<a href="';
+		the_permalink();
+		echo '#comments" class="meta-link" title="' . esc_html__( 'Ver comentarios', 'coki' ) . '"><i class="coki-comment"></i> ';
+		comments_number( '0', '1', '%' );
+		echo '</a>' . $close;
+	}
+
+	if ( in_array( 'date', $args ) ) {
+		echo $open;
+		the_date();
+		echo $close;
+	}
+
+	if ( in_array( 'edit', $args ) ) {
+		edit_post_link( '<i class="type type-info coki-edit"></i>' );
+	}
+
+	if ( in_array( 'category', $args ) ) {
+		echo $open;
+		the_category( ', ' );
+		echo $close;
+	}
+
+	if ( in_array( 'tags', $args ) ) {
+		echo $open;
+		the_tags( '<i class="coki-tags"></i> ' );
+		echo $close;
+	}
+
+	echo '</ul>';
 }
+
+/**
+ * Filtro para enlace al perfil del autor. Coloca su Gravatar en lugar de su nombre.
+ *
+ * @since 1.0.0
+ *
+ * @param string $link Enlace al perfil. Opcional.
+ */
+function cokie_author_link( $link ) {
+	return sprintf( '<a href="%1$s" class="meta-link" title="%2$s" rel="author">%3$s</a>',
+		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+		/* translators: %s: nombre del autor */
+		esc_attr( sprintf( __( 'Publicado por %s', 'coki' ), get_the_author() ) ),
+		get_avatar( get_the_author_meta( 'ID' ) )
+    );
+}
+add_filter( 'the_author_posts_link', 'cokie_author_link', 10, 1 ); 

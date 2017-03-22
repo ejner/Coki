@@ -42,7 +42,7 @@ get_header(); ?>
 
 				<!-- .details -->
 				<div class="details">
-					<?php coki_post_footer( 'page' ); ?>
+					<?php coki_post_meta( array( 'edit', 'date' ) ); ?>
 				</div>
 				<!-- /.details -->
 

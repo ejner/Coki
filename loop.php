@@ -44,14 +44,6 @@
 				<!-- /post title -->
 					
 			<?php endif; ?>
-
-			<?php if ( is_single() ) { ?>
-				<!-- .details -->
-				<div class="details">
-					<?php coki_post_footer(); ?>
-				</div>
-				<!-- /.details -->
-			<?php } ?>
 			
 				<!-- .content-post -->
 				<div class="content-post">
@@ -69,9 +61,9 @@
 				<div class="details">
 			<?php
 				if ( is_single() ) {
-					coki_post_footer( 'single' );
+					coki_post_meta( array( 'edit', 'author', 'category', 'tags' ) );
 				} else {
-					coki_post_footer();
+					coki_post_meta( array( 'edit', 'author', 'date' ) );
 				} ?>
 				</div>
 				<!-- /.details -->
