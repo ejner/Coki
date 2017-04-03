@@ -351,7 +351,7 @@ function coki_comments_count( $print = true, $before = '<li class="meta-item">',
 	$result .= esc_html( $comments ) . '</a>' . wp_kses_normalize_entities( $after );
 
 	if ( true === $print ) {
-		echo $result;
+		echo $result; // WPCS: XSS OK.
 	} else {
 		return $result;
 	}
