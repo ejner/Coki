@@ -42,11 +42,14 @@ get_header(); ?>
 				</div>
 				<!-- /.content-post -->
 
-				<!-- .details -->
-				<div class="details">
-					<?php coki_post_meta( array( 'date' ) ); ?>
-				</div>
-				<!-- /.details -->
+				<!-- .meta -->
+				<nav class="meta">
+					<ul class="meta-details">
+						<li class="meta-item"><?php the_author_posts_link(); ?></li>
+						<li class="meta-item"><?php the_date(); ?></li>
+					</ul>
+				</nav>
+				<!-- /.meta -->
 
 			</article>
 			<!-- /article -->

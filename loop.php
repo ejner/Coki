@@ -59,15 +59,20 @@
 				</div>
 				<!-- /.content-post -->
 
-				<!-- .details -->
-				<div class="details">
-			<?php
-				if ( is_single() ) {
-					coki_post_meta( array( 'author', 'taxonomy' ) );
-				} else {
-					coki_post_meta( array( 'author', 'date' ) );
-				} ?>
-				</div>
-				<!-- /.details -->
+				<!-- .meta -->
+				<nav class="meta">
+					<ul class="meta-details">
+				<?php if ( is_single() ) { ?>
+						<?php coki_comments_count(); ?>
+						<li class="meta-item"><i class="coki-category"></i> <?php the_category( ', ' ); ?></li>
+						<li class="meta-item"><?php the_tags( '<i class="coki-tags"></i> ' ); ?></li>
+				<?php } else { ?>
+						<li class="meta-item"><?php the_author_posts_link(); ?></li>
+						<li class="meta-item"><?php the_date(); ?></li>
+						<?php coki_comments_count(); ?>
+				<?php } ?>
+					</ul>
+				</nav>
+				<!-- /.meta -->
 					
 			</article>

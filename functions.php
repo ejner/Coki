@@ -214,7 +214,7 @@ add_filter( 'video_embed_html', 'coki_responsive_embed' );
  *
  * @param string $the_date La fecha. Obligatorio.
  * @param string $d Formato fecha PHP. Opcional.
- * @param int $post ID de la publicación. Obligatorio.
+ * @param int    $post ID de la publicación. Obligatorio.
  */
 function coki_post_time( $the_date, $d, $post ) {
 	$time_difference = current_time( 'timestamp' ) - get_the_time( 'U' );
@@ -305,7 +305,7 @@ function coki_comments( $comment, $args, $depth ) {
 								array(
 									'add_below' => 'comment',
 									'depth' => $depth,
-									'max_depth' => $args['max_depth']
+									'max_depth' => $args['max_depth'],
 								)
 							)
 						); ?>
@@ -315,58 +315,6 @@ function coki_comments( $comment, $args, $depth ) {
 
 			<div class="clear"></div>
 <?php
-}
-
-/**
- * Detalles de la entrada o página
- *
- * @since 1.0.0
- *
- * @param array $args Grupo de detalles a mostrar. Obligatorio.
- * @param string $container Etiqueta de obertura. Opcional.
- * @param string $open Etiqueta de obertura items. Opcional.
- * @param string $close Etiqueta de cierre items. Opcional.
- */
-function coki_post_meta( $args, $container = 'ul', $open = '<li class="meta-item">', $close = '</li>' ) {
-	$container = esc_attr( $container );
-	$open = wp_kses_normalize_entities( $open );
-	$close = wp_kses_normalize_entities( $close );
-
-	echo '<' . $container . ' class="meta-list">';
-
-	if ( in_array( 'author', $args ) ) {
-		echo $open;
-		the_author_posts_link();
-		echo $close;
-	}
-
-	if ( in_array( 'comments', $args ) && comments_open() ) {
-		echo $open . '<a href="';
-		the_permalink();
-		echo '#comments" class="meta-link" title="' . esc_html__( 'Ver comentarios', 'coki' ) . '"><i class="coki-comment"></i> ';
-		comments_number( '0', '1', '%' );
-		echo '</a>' . $close;
-	}
-
-	if ( in_array( 'date', $args ) ) {
-		echo $open;
-		the_date();
-		echo $close;
-	}
-
-	if ( in_array( 'category', $args ) || in_array( 'taxonomy', $args ) ) {
-		echo $open . '<i class="coki-category"></i> ';
-		the_category( ', ' );
-		echo $close;
-	}
-
-	if ( in_array( 'tags', $args ) || in_array( 'taxonomy', $args ) ) {
-		echo $open;
-		the_tags( '<i class="coki-tags"></i> ' );
-		echo $close;
-	}
-
-	echo '</' . $container . '>';
 }
 
 /**
@@ -385,3 +333,26 @@ function cokie_author_link( $link ) {
 	);
 }
 add_filter( 'the_author_posts_link', 'cokie_author_link', 10, 1 );
+
+/**
+ * Si los comentarios están habilitados, devuelve el número de comentarios envuelto
+ * en un hipervinculo.
+ *
+ * @since 1.0.0
+ *
+ * @param bool   $print Imprime la cadena. Opcional.
+ * @param string $before Contenido antes del enlace. Opcional.
+ * @param string $after Contenido despues del enlace. Opcional.
+ */
+function coki_comments_count( $print = true, $before = '<li class="meta-item">', $after = '</li>' ) {
+	$comments = get_comments_number( get_the_ID() );
+	$result =  wp_kses_normalize_entities( $before ) . '<a href="' . esc_url( get_the_permalink() );
+	$result .= '#comments" title="' . esc_html__( 'Ir a los comentarios', 'coki' ) . '" class="meta-link">';
+	$result .= esc_html( $comments ) . '</a>' . wp_kses_normalize_entities( $after );
+
+	if ( true === $print ) {
+		echo $result;
+	} else {
+		return $result;
+	}
+}

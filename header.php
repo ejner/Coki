@@ -30,9 +30,9 @@
 							<?php echo get_avatar( get_option( 'admin_email' ), 120 ); ?>
 							<?php
 								if ( is_home() ) {
-									echo '<h1 class="blog-name">' . esc_url( get_bloginfo( 'name' ) ) . '</h1>';
+									echo '<h1 class="blog-name">' . esc_html( get_bloginfo( 'name' ) ) . '</h1>';
 								} else {
-									echo '<h2 class="blog-name">' . esc_url( get_bloginfo( 'name' ) ) . '</h2>';
+									echo '<h2 class="blog-name">' . esc_html( get_bloginfo( 'name' ) ) . '</h2>';
 								} ?>
 						</a>
 					</div>
