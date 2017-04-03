@@ -21,28 +21,28 @@
 		<!-- .wrap -->
 		<div class="wrap">
 
-			<!-- header -->
-			<header class="header clear">
+			<!-- .header -->
+			<header class="header">
 
 					<!-- .logo -->
-					<div class="logo floatleft">
+					<div class="logo">
 						<a href="<?php echo esc_url( home_url() ); ?>">
 							<?php echo get_avatar( get_option( 'admin_email' ), 120 ); ?>
 							<?php
 								if ( is_home() ) {
-									echo '<h1 class="blog-name">' . esc_html( get_bloginfo( 'name' ) ) . '</h1>';
+									echo '<h1 class="logo-name">' . esc_html( get_bloginfo( 'name' ) ) . '</h1>';
 								} else {
-									echo '<h2 class="blog-name">' . esc_html( get_bloginfo( 'name' ) ) . '</h2>';
+									echo '<h2 class="logo-name">' . esc_html( get_bloginfo( 'name' ) ) . '</h2>';
 								} ?>
 						</a>
 					</div>
 					<!-- /.logo -->
 
-					<!-- nav -->
-					<nav class="nav floatright">
+					<!-- .nav -->
+					<nav class="nav">
 						<?php coki_menu(); ?>
 					</nav>
-					<!-- /nav -->
+					<!-- /.nav -->
 
 			</header>
-			<!-- /header -->
+			<!-- /.header -->

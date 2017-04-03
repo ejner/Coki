@@ -10,7 +10,7 @@
 ?>
 			<div class="clear"></div>
 
-			<!-- footer -->
+			<!-- .footer -->
 			<footer class="footer">
 
 				<!-- .copyright -->
@@ -20,10 +20,10 @@
 				<!-- /.copyright -->
 
 			</footer>
-			<!-- /footer -->
+			<!-- /.footer -->
 
 		</div>
-		<!-- /#wrapper -->
+		<!-- /.wrap -->
 
 		<?php wp_footer(); ?>
 	</body>

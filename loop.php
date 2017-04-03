@@ -1,6 +1,6 @@
 <?php
 /**
- * Plantilla del loop
+ * Plantilla del loop (usada por todos excepto 404.php y page.php)
  *
  * @package Coki
  * @version 1.0
@@ -27,23 +27,23 @@
 
 			<?php if ( has_post_format( 'link' ) ) : ?>
 
-				<!-- post title -->
+				<!-- .title-post -->
 			<?php if ( is_single() ) { ?>
 				<h1><a href="<?php coki_url_link(); ?>" class="title-post" target="_blank" title="Visitar '<?php the_title(); ?>'"><?php the_title(); ?></a></h2>
 			<?php } else { ?>
 				<h2><a href="<?php coki_url_link(); ?>" class="title-post" target="_blank" title="Visitar '<?php the_title(); ?>'"><?php the_title(); ?></a></h2>
 			<?php } ?>
-				<!-- /post title -->
+				<!-- /.title-post -->
 					
 			<?php else : ?>
 					
-				<!-- post title -->
+				<!-- .title-post -->
 			<?php if ( is_single() ) { ?>
 				<?php the_title( '<h1 class="title-post">', '</h1>' ); ?>
 			<?php } else { ?>
 				<h2><a href="<?php the_permalink(); ?>" class="title-post" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
 			<?php } ?>
-				<!-- /post title -->
+				<!-- /.title-post -->
 					
 			<?php endif; ?>
 			
@@ -76,3 +76,4 @@
 				<!-- /.meta -->
 					
 			</article>
+			<!-- /article -->

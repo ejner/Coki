@@ -1,6 +1,6 @@
 <?php
 /**
- * Plantilla de archivo
+ * Plantilla para archivos (autor, categoría e etiquetas)
  *
  * @package Coki
  * @version 1.0
@@ -9,8 +9,9 @@
 
 get_header(); ?>
 
+	<!-- .content -->
 	<main class="content posts">
-		<!-- section -->
+		<!-- .archive -->
 		<section class="archive">
 
 		<?php if ( have_posts() ) : ?>
@@ -29,7 +30,7 @@ get_header(); ?>
 		endif; ?>
 
 		</section>
-		<!-- /section -->
+		<!-- /.archive -->
 		
 		<!-- .pagination -->
 		<div class="pagination">
@@ -38,5 +39,6 @@ get_header(); ?>
 		<!-- /.pagination -->
 
 	</main>
+	<!-- /.content -->
 
 <?php get_footer(); ?>

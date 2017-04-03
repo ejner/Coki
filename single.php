@@ -1,6 +1,6 @@
 <?php
 /**
- * Plantilla de artículos
+ * Plantilla de artículos individuales
  *
  * @package Coki
  * @version 1.0
@@ -9,9 +9,10 @@
 
 get_header(); ?>
 
-	<main class="content single clear">
-		<!-- section -->
-		<section class="clear">
+	<!-- .content -->
+	<main class="content single">
+		<!-- .single-post -->
+		<section class="single-post">
 
 		<?php
 		if ( have_posts() ) : while ( have_posts() ) : the_post();
@@ -26,8 +27,8 @@ get_header(); ?>
 		endif; ?>
 
 		</section>
-		<!-- /section -->
-		
+		<!-- /.single-post -->
 	</main>
+	<!-- /.content -->
 
 <?php get_footer(); ?>

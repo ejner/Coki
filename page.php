@@ -1,6 +1,6 @@
 <?php
 /**
- * Plantilla de páginas
+ * Plantilla de páginas individuales
  *
  * @package Coki
  * @version 1.0
@@ -9,9 +9,10 @@
 
 get_header(); ?>
 
-	<main class="content page clear">
-		<!-- section -->
-		<section>
+	<!-- .content -->
+	<main class="content single">
+		<!-- .page -->
+		<section class="page">
 
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
@@ -58,7 +59,8 @@ get_header(); ?>
 		endif; ?>
 
 		</section>
-		<!-- /section -->
+		<!-- /.page -->
 	</main>
+	<!-- .content -->
 
 <?php get_footer(); ?>
