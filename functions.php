@@ -346,12 +346,12 @@ add_filter( 'the_author_posts_link', 'cokie_author_link', 10, 1 );
  */
 function coki_comments_count( $print = true, $before = '<li class="meta-item">', $after = '</li>' ) {
 	$comments = get_comments_number( get_the_ID() );
-	$result =  wp_kses_normalize_entities( $before ) . '<a href="' . esc_url( get_the_permalink() );
+	$result =   wp_kses_normalize_entities( $before ) . '<a href="' . esc_url( get_the_permalink() );
 	$result .= '#comments" title="' . esc_html__( 'Ir a los comentarios', 'coki' ) . '" class="meta-link">';
 	$result .= esc_html( $comments ) . '</a>' . wp_kses_normalize_entities( $after );
 
 	if ( true === $print ) {
-		echo $result;
+		echo $result; // WPCS: XSS OK.
 	} else {
 		return $result;
 	}
