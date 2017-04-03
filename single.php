@@ -19,17 +19,11 @@ get_header(); ?>
 			// Carga plantilla del loop.
 			get_template_part( 'loop' );
 
+			// Carga comentarios.
+			comments_template();
+
 		endwhile;
-		?>
-		<?php else : ?>
-
-			<!-- article -->
-			<article>
-				<h2><?php esc_html_e( 'No hay artículos para mostrar.', 'coki' ); ?></h2>
-			</article>
-			<!-- /article -->
-
-		<?php endif; ?>
+		endif; ?>
 
 		</section>
 		<!-- /section -->

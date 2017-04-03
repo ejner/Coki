@@ -54,16 +54,8 @@ get_header(); ?>
 			</article>
 			<!-- /article -->
 
-		<?php endwhile; ?>
-		<?php else : ?>
-
-			<!-- article -->
-			<article>
-				<h2><?php esc_html_e( 'No hay artículos para mostrar.', 'coki' ); ?></h2>
-			</article>
-			<!-- /article -->
-
-		<?php endif; ?>
+		<?php endwhile;
+		endif; ?>
 
 		</section>
 		<!-- /section -->

@@ -19,18 +19,7 @@ get_header(); ?>
 				get_template_part( 'loop' );
 
 			endwhile;
-		?>
-		<?php else : ?>
-
-			<!-- article -->
-			<article>
-				<?php coki_icon( 'results' ); ?>
-				<h1><?php esc_html_e( 'No hay artículos para mostrar.', 'coki' ); ?></h1>
-				<p><?php esc_html_e( 'Tal vez aún no ha publicado artículos, pero es un hecho que no hay qué mostrar en este momento.' ); ?></p>
-			</article>
-			<!-- /article -->
-
-		<?php endif; ?>
+			endif; ?>
 
 		</section>
 		<!-- /section -->

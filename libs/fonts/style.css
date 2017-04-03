@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Coki';
   src:
-    url('Coki.ttf?7k88km') format('truetype'),
-    url('Coki.woff?7k88km') format('woff'),
-    url('Coki.svg?7k88km#Coki') format('svg');
+    url('Coki.ttf?p4rv0o') format('truetype'),
+    url('Coki.woff?p4rv0o') format('woff'),
+    url('Coki.svg?p4rv0o#Coki') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -73,6 +73,9 @@ i {
 }
 .coki-sticky:before {
   content: "\e838";
+}
+.coki-patch:before {
+  content: "\e3f3";
 }
 .coki-home:before {
   content: "\e88a";
