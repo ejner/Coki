@@ -16,12 +16,9 @@ get_header(); ?>
 
 		<?php
 		if ( have_posts() ) : while ( have_posts() ) : the_post();
-
-			// Carga plantilla del loop.
-			get_template_part( 'loop' );
-
-			// Carga comentarios.
-			comments_template();
+			
+			get_template_part( 'loop' ); // Carga plantilla del loop.
+			comments_template(); // Carga comentarios.
 
 		endwhile;
 		endif; ?>

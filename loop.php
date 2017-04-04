@@ -68,7 +68,7 @@
 						<li class="meta-item"><?php the_tags( '<i class="coki-tags"></i> ' ); ?></li>
 				<?php } else { ?>
 						<li class="meta-item"><?php the_author_posts_link(); ?></li>
-						<li class="meta-item"><?php the_date(); ?></li>
+						<li class="meta-item"><?php the_time( get_option('date_format') );; ?></li>
 						<?php coki_comments_count(); ?>
 				<?php } ?>
 					</ul>
