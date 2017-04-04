@@ -35,6 +35,11 @@ require get_template_directory() . '/libs/chat/chat-format.php';
  * @since 1.0.0
  */
 function coki_setup() {
+	$logo = array(
+					'height' => 120,
+					'width' => 120,
+				);
+
 	add_theme_support( 'menus' ); // Soporte de menús.
 	add_theme_support( 'title-tag' ); // Título.
 	add_theme_support( 'post-thumbnails' ); // Soporte de miniaturas.
@@ -43,8 +48,7 @@ function coki_setup() {
 	add_theme_support( 'automatic-feed-links' ); // Habilita enlaces RSS en la cabecera para comentarios.
 	add_theme_support( 'html5', array( 'comment-form', 'comment-list', 'gallery', 'caption' ) ); // HTML5.
 	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' ) ); // Formatos de entrada.
-	add_theme_support( 'custom-logo', array( 'height' => 120, 'width' => 120 ) ); // Soporte de logo personalizado.
-
+	add_theme_support( 'custom-logo', $logo ); // Soporte de logo personalizado.
 	/* Elimina acciones */
 	remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds.
 	remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed.
