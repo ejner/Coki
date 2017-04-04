@@ -43,6 +43,7 @@ function coki_setup() {
 	add_theme_support( 'automatic-feed-links' ); // Habilita enlaces RSS en la cabecera para comentarios.
 	add_theme_support( 'html5', array( 'comment-form', 'comment-list', 'gallery', 'caption' ) ); // HTML5.
 	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' ) ); // Formatos de entrada.
+	add_theme_support( 'custom-logo', array( 'height' => 120, 'width' => 120 ) ); // Soporte de logo personalizado.
 
 	/* Elimina acciones */
 	remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds.
