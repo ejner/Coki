@@ -154,8 +154,18 @@ function coki_pagination( $prev = '&laquo;', $next = '&raquo;' ) {
 		'prev_text' => $prev,
 		'next_text' => $next,
 	));
+	$allow = array(
+		'a' => array(
+			'href' => array(),
+			'title' => array(),
+			'class' => array(),
+		),
+		'span' => array(
+			'class' => array(),
+		),
+	);
 
-	echo wp_kses_normalize_entities( $return );
+	echo wp_kses( $return, $allow );
 }
 add_action( 'init', 'coki_pagination' );
 
@@ -367,7 +377,7 @@ function coki_comments_count( $print = true, $before = '<li class="meta-item">',
  * @since 1.0.0
  */
 function coki_jetpack_infinite_scroll() {
-    get_template_part( 'loop' );
+	get_template_part( 'loop' );
 }
 
 /**

@@ -19,8 +19,9 @@ get_header(); ?>
 			<?php coki_icon( 'archive unique' ); ?>
 			<?php the_archive_title( '<h1 class="title-page">', '</h1>' ); ?>
 			<?php the_archive_description( '<p>', '</p>' ); ?>
+			<?php get_template_part( 'loop' ); ?>
 
-		<?php get_template_part( 'loop' ); ?>
+		<?php endif; ?>
 
 		</section>
 		<!-- /.archive -->
