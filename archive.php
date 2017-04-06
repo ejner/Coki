@@ -20,14 +20,7 @@ get_header(); ?>
 			<?php the_archive_title( '<h1 class="title-page">', '</h1>' ); ?>
 			<?php the_archive_description( '<p>', '</p>' ); ?>
 
-		<?php
-		while ( have_posts() ) : the_post();
-
-			// Carga plantilla del loop.
-			get_template_part( 'loop' );
-
-		endwhile;
-		endif; ?>
+		<?php get_template_part( 'loop' ); ?>
 
 		</section>
 		<!-- /.archive -->

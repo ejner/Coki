@@ -15,12 +15,11 @@ get_header(); ?>
 		<section class="single-post">
 
 		<?php
-		if ( have_posts() ) : while ( have_posts() ) : the_post();
+		if ( have_posts() ) :
 
 			get_template_part( 'loop' ); // Carga plantilla del loop.
 			comments_template(); // Carga comentarios.
 
-		endwhile;
 		endif; ?>
 
 		</section>

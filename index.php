@@ -12,15 +12,9 @@ get_header(); ?>
 	<!-- .content -->
 	<main class="content posts">
 		<!-- .home -->
-		<section class="home">
+		<section id="scroll" class="home">
 
-		<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-
-				// Carga plantilla del loop.
-				get_template_part( 'loop' );
-
-			endwhile;
-			endif; ?>
+		<?php get_template_part( 'loop' ); ?>
 
 		</section>
 		<!-- /.home -->

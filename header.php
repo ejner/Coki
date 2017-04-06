@@ -26,15 +26,18 @@
 
 					<!-- .logo -->
 					<div class="logo">
-						<a href="<?php echo esc_url( home_url() ); ?>">
+						
 							<?php
 							if ( has_custom_logo() ) {
 								the_custom_logo();
 							} else {
-								echo get_avatar( get_option( 'admin_email' ), 120 );
-							}
 							?>
+								<a href="<?php echo esc_url( home_url() ); ?>" rel="home" itemprop="url">
+									<?php echo get_avatar( get_option( 'admin_email' ), 120 ); ?>
+								</a>
 							<?php
+							}
+
 							if ( is_home() ) {
 								echo '<h1 class="logo-name">' . esc_html( get_bloginfo( 'name' ) ) . '</h1>';
 							} else {

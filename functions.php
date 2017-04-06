@@ -49,19 +49,23 @@ function coki_setup() {
 	add_theme_support( 'html5', array( 'comment-form', 'comment-list', 'gallery', 'caption' ) ); // HTML5.
 	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' ) ); // Formatos de entrada.
 	add_theme_support( 'custom-logo', $logo ); // Soporte de logo personalizado.
+	add_theme_support( 'infinite-scroll', array(
+		'container' => 'scroll',
+		'render' => 'coki_jetpack_infinite_scroll',
+		'posts_per_page' => get_option( 'posts_per_page' ),
+		'footer' => 'footer',
+	) ); // Soporte scroll infinito, JetPack.
+
 	/* Elimina acciones */
-	remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds.
-	remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed.
-	remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link.
-	remove_action( 'wp_head', 'wlwmanifest_link' ); // Display the link to the Windows Live Writer manifest file.
-	remove_action( 'wp_head', 'index_rel_link' ); // Index link.
-	remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // Prev link.
-	remove_action( 'wp_head', 'start_post_rel_link', 10, 0 ); // Start link.
-	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
-	remove_action( 'wp_head', 'wp_generator' ); // Display the XHTML generator that is generated on the wp_head hook, WP version.
+	remove_action( 'wp_head', 'feed_links_extra', 3 ); // Muestra enlaces extras en el feed, como feed de categorías.
+	remove_action( 'wp_head', 'rsd_link' ); // Enlace Really Simple Discovery.
+	remove_action( 'wp_head', 'wlwmanifest_link' ); // Enlace al archivo de configuración de Windows Live Writer.
+	remove_action( 'wp_head', 'index_rel_link' ); // Enlace a portada.
+	remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // Siguientes enlace.
+	remove_action( 'wp_head', 'start_post_rel_link', 10, 0 ); // Link relacional al primer artículo.
+	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Link relacional a las entradas adyacentes de la entrada actual.
+	remove_action( 'wp_head', 'wp_generator' ); // Muestra versión actual de WordPress.
 	remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
-	remove_action( 'wp_head', 'rel_canonical' );
-	remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
 }
 add_action( 'after_setup_theme', 'coki_setup' );
 
@@ -142,8 +146,7 @@ function coki_pagination( $prev = '&laquo;', $next = '&raquo;' ) {
 	$prev = esc_html( $prev );
 	$next = esc_html( $next );
 	$big = 999999999;
-
-	echo paginate_links( array( // WPCS: XSS OK.
+	$return = paginate_links( array(
 		'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
 		'format' => '?paged=%#%',
 		'current' => max( 1, get_query_var( 'paged' ) ),
@@ -151,6 +154,8 @@ function coki_pagination( $prev = '&laquo;', $next = '&raquo;' ) {
 		'prev_text' => $prev,
 		'next_text' => $next,
 	));
+
+	echo wp_kses_normalize_entities( $return );
 }
 add_action( 'init', 'coki_pagination' );
 
@@ -168,33 +173,27 @@ function coki_icon( $icon = null, $color = null ) {
 	$color = esc_html( $color );
 	$color = trim( $color );
 
-	// Si es una entrada protegida.
-	if ( post_password_required() ) {
-		$format = 'private';
-	// Si no, verifica si $icon esta definido.
-	} elseif ( ! empty( $icon ) ) {
-		$format = $icon;
-	// Mira si es un formato de entrada.
-	} elseif ( has_post_format( $format ) ) {
-		$format = get_post_format();
-	// O es un adjunto.
-	} elseif ( is_attachment() ) {
-		$format = 'attachment';
-	// Se aburre y lo define como "standard".
-	} else {
-		$format = 'standard';
-	}
-	// Verifica si $color está definido, y si lo está, añade el color.
-	if ( ! empty( $color ) ) {
-		$color = ' style="background-color: ' . $color . '!important"';
+	if ( post_password_required() ) { // Si es una entrada protegida.
+		$icon = 'private';
+	} elseif ( ! empty( $icon ) ) { // Si no, verifica si $icon esta definido.
+		$icon = $icon;
+	} elseif ( has_post_format( $format ) ) { // Mira si es un formato de entrada.
+		$icon = get_post_format();
+	} elseif ( is_attachment() ) { // O es un adjunto.
+		$icon = 'attachment';
+	} else { // Se aburre y lo define como "standard".
+		$icon = 'standard';
 	}
 
-	// Si es una entrada fijada.
-	if ( is_sticky() && is_home() ) {
+	if ( ! empty( $color ) && ctype_xdigit( $color ) ) { // Verifica si $color está definido, y si corresponde a valor HEX.
+		$color = ' style="background-color: #' . $color . '!important"';
+	}
+
+	if ( is_sticky() && is_home() ) { // Si es una entrada fijada.
 		echo '<i class="type coki-sticky"></i>';
 	}
-	// Imprime el icono
-	echo '<i class="type mini-type coki-' . $format . '"' . $color . '></i>'; // WPCS: XSS OK.
+	// Imprime el icono.
+	echo '<i class="type mini-type coki-' . $icon . '"' . $color . '></i>'; // WPCS: XSS OK.
 }
 
 /**
@@ -361,3 +360,22 @@ function coki_comments_count( $print = true, $before = '<li class="meta-item">',
 		return $result;
 	}
 }
+
+/**
+ * Determina el archivo donde se encuentra el loop. Usado por Jetpack.
+ *
+ * @since 1.0.0
+ */
+function coki_jetpack_infinite_scroll() {
+    get_template_part( 'loop' );
+}
+
+/**
+ * Cambia el pie de página. Usado por Jetpack.
+ *
+ * @since 1.0.0
+ */
+function coki_jetpack_credits() {
+	return '<a href="http://wordpress.org/" title="WordPress.org">WordPress</a> - <a href="http://github.com/ejner/Coki" title="Coki">Coki</a>';
+}
+add_filter( 'infinite_scroll_credit', 'coki_jetpack_credits' );

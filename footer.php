@@ -8,10 +8,8 @@
  */
 
 ?>
-			<div class="clear"></div>
-
 			<!-- .footer -->
-			<footer class="footer">
+			<footer class="footer" id="footer">
 
 				<!-- .credits -->
 				<div class="credits">
