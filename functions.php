@@ -26,9 +26,6 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 900;
 }
 
-// Carga "format-chat.php".
-require get_template_directory() . '/libs/chat/chat-format.php';
-
 /**
  * Define parámetros básicos del theme y desactiva funciones del núcleo que no se usarán
  *
@@ -235,12 +232,12 @@ function coki_post_time( $the_date, $d, $post ) {
 
 	if ( $time_difference < 86400 ) { // Si la diferencia es menor a 86400 segundos (24 horas).
 		$date = sprintf( /* translators: %s tiempo transcurrido desde la publicación. */
-				__( 'Hace %s atrás', 'coki' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) )
-			);
+			__( 'Hace %s atrás', 'coki' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) )
+		);
 	} else { // Si es mayor a 86400 segundos.
 		$date = sprintf( /* translators: %1$s fecha - %2$s hora de la publicación. */
-				__( '%1$s a las %2$s', 'coki' ), esc_html( get_the_date() ), esc_html( get_the_time() )
-			);
+			__( '%1$s a las %2$s', 'coki' ), esc_html( get_the_date() ), esc_html( get_the_time() )
+		);
 	}
 	$date = '<i class="coki-time"></i> <time class="date" datatime="' . date_i18n( get_the_time( 'Y-m-d\TH:i:s' ) ) . '">' . esc_attr( $date ) . '</time>';
 	return '<a href="' . get_the_permalink() . '" class="meta-link" >' . $date . '</a>';
@@ -256,10 +253,10 @@ function coki_url_link() {
 	if ( has_post_format( 'link' ) ) {
 		$content = get_the_content();
 
-		// Verifica si existe una etiqueta <a> y extrae el enlace.
+	// Verifica si existe una etiqueta <a> y extrae el enlace.
 		if ( get_url_in_content( $content ) ) {
-			echo get_url_in_content( $content ); // WPCS: XSS OK.
-		// Si no existe, verifica que exista un enlace en el contenido.
+			echo esc_url( get_url_in_content( $content ) );
+	// Si no existe, verifica que exista un enlace en el contenido.
 		} elseif ( preg_match( '/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/', $content, $matches ) ) {
 			echo esc_url_raw( $matches[0] );
 		}
@@ -283,20 +280,22 @@ function coki_comments( $comment, $args, $depth ) {
 		<li <?php comment_class( empty( $arg ) ); ?> id="comment-<?php comment_ID() ?>">
 
 			<?php
-				if ( 0 !== $args['avatar_size'] ) {
-					echo get_avatar( $comment, $args['avatar_size'] );
-				}
+			if ( 0 !== $args['avatar_size'] ) {
+				echo get_avatar( $comment, $args['avatar_size'] );
+			}
 			?>
 
 			<div class="data-comments">
 				<span class="author"><?php echo get_comment_author_link() ?></span>
 
 				<ul class="details-comments">
-					<li><i class="coki-time"></i> <?php
-						printf(
+					<li><i class="coki-time"></i>
+					<?php
+					printf(
 							/* translators: %1$s fecha - %2$s hora del comentario. */
 							esc_html__( '%1$s a las %2$s', 'coki' ), get_comment_date(), get_comment_time()
-							); ?></li>
+					);
+					?></li>
 					<li><i class="coki-permalink"></i> <a href="<?php echo esc_html( get_comment_link( $comment->comment_ID ) ); ?>"><?php esc_html_e( 'Enlace permanente', 'coki' ); ?></a></li>
 					<?php edit_comment_link( __( 'Editar comentario', 'coki' ), '<li><i class="coki-edit"></i> ', '</li>' ); ?>
 				</ul>
@@ -389,3 +388,68 @@ function coki_jetpack_credits() {
 	return '<a href="http://wordpress.org/" title="WordPress.org">WordPress</a> - <a href="http://github.com/ejner/Coki" title="Coki">Coki</a>';
 }
 add_filter( 'infinite_scroll_credit', 'coki_jetpack_credits' );
+
+/**
+ * Filtra el contenido del artículo con el formato "chat", los envuelve en etiquetas HTML y los devuelve.
+ *
+ * @link http://justintadlock.com/archives/2012/08/21/post-formats-chat
+ *
+ * @since 1.0.0
+ *
+ * @param string $content Contenido del artículo.
+ */
+function coki_chat( $content ) {
+	if ( ! has_post_format( 'chat' ) ) { // Verifica que se trata del formato "chat".
+		return $content;
+	}
+
+	$_post_format_chat_ids = array(); // Establece la variable global $_post_format_chat_ids en 0.
+	$separator = apply_filters( 'coki_chat_separator', ': ' ); // Aplica filtros para el separador.
+	$chat_output = "\n\t\t\t" . '<div id="chat-transcript-' . esc_attr( get_the_ID() ) . '" class="chat-transcript">'; // Etiqueta inicio chat.
+	$chat_rows = preg_split( "/(\r?\n)+|(<br\s*\/?>\s*)+/", $content ); // Divide el contenido.
+
+	foreach ( $chat_rows as $chat_row ) {
+
+		if ( strpos( $chat_row, $separator ) ) {
+			$chat_row_split = explode( $separator, trim( $chat_row ), 2 );
+			$chat_author = strip_tags( trim( $chat_row_split[0] ) );
+			$chat_text = trim( $chat_row_split[1] );
+			$speaker_id = coki_chat_get_id( $chat_author );
+
+			$chat_output .= "\n\t\t\t\t" . '<div class="chat-row ' . sanitize_html_class( "chat-speaker-{$speaker_id}" ) . '">';
+			$chat_output .= "\n\t\t\t\t\t" . '<div class="chat-author ' . sanitize_html_class( strtolower( "chat-author-{$chat_author}" ) ) . ' vcard"><span class="fn">' . apply_filters( 'my_post_format_chat_author', $chat_author, $speaker_id ) . '</span>' . $separator . '</div>';
+			$chat_output .= "\n\t\t\t\t\t" . '<div class="chat-text">' . str_replace( array( "\r", "\n", "\t" ), '', apply_filters( 'coki_chat_format_text', $chat_text, $chat_author, $speaker_id ) ) . '</div>';
+			$chat_output .= "\n\t\t\t\t" . '</div><!-- /.chat-row -->';
+		} elseif ( ! empty( $chat_row ) ) {
+			$chat_output .= "\n\t\t\t\t" . '<div class="chat-row ' . sanitize_html_class( "chat-speaker-{$speaker_id}" ) . '">';
+			$chat_output .= "\n\t\t\t\t\t" . '<div class="chat-text">' . str_replace( array( "\r", "\n", "\t" ), '', apply_filters( 'coki_chat_format_text', $chat_row, $chat_author, $speaker_id ) ) . '</div>';
+			$chat_output .= "\n\t\t\t</div><!-- .chat-row -->";
+		}
+	}
+
+	$chat_output .= "\n\t\t\t</div><!-- .chat-transcript -->\n";
+
+	return apply_filters( 'coki_chat_output', $chat_output ); // Devuelve el filtro para facilitar modificaciones.
+}
+add_filter( 'the_content', 'coki_chat' );
+add_filter( 'coki_chat_format_text', 'wpautop' );
+
+/**
+ * Devuelve un ID basado en el nombre del autor.
+ *
+ * @link http://justintadlock.com/archives/2012/08/21/post-formats-chat
+ * 
+ * @since 1.0.0
+ *
+ * @global array $_post_format_chat_ids ID del chat basado en el nombre del autor.
+ * @param string $chat_author Autor actual.
+ */
+function coki_chat_get_id( $chat_author ) {
+	global $_post_format_chat_ids;
+
+	$chat_author = strtolower( strip_tags( $chat_author ) ); // Sanitiza y normaliza el nombre.
+	$_post_format_chat_ids[] = $chat_author; // Añade el nombre del autor al array.
+	$_post_format_chat_ids = array_unique( $_post_format_chat_ids ); // Verifica los valores.
+
+	return absint( array_search( $chat_author, $_post_format_chat_ids, true ) ) + 1; // Devuelve el array con el ID del autor.
+}
