@@ -438,7 +438,7 @@ add_filter( 'coki_chat_format_text', 'wpautop' );
  * Devuelve un ID basado en el nombre del autor.
  *
  * @link http://justintadlock.com/archives/2012/08/21/post-formats-chat
- * 
+ *
  * @since 1.0.0
  *
  * @global array $_post_format_chat_ids ID del chat basado en el nombre del autor.
