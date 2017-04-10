@@ -1,8 +1,8 @@
 /*
 	Theme Name: Coki
 	Theme URI: http://ejner.galaz.me/
-	Description: Diseño para blog personal
-	Version: 1.0.0-beta.6
+	Description: Blogs verdaderamente personales.
+	Version: 1.0.0-beta.6-build.72
 	Author: Ejner Galaz
 	Author URI: http://galaz.me/
 	License: GNU General Public License v2
@@ -10,3 +10,19 @@
 	Text Domain: coki
 	Tags: one-column, custom-menu, featured-images, footer-widgets, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
 */
+@import url('https://fonts.googleapis.com/css?family=PT+Mono|Titillium+Web');
+/*
+	1.0 Valores Generales
+*/
+html {
+  font-size: 15px;
+  font-family: 'Titillium Web', sans-serif;
+  line-height: 1.15;
+}
+body {
+  margin: 0;
+}
+h1 {
+  font-size: 2rem;
+  margin: 0.67rem 0;
+}

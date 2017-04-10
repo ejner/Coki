@@ -1,5 +1,11 @@
 // out: false
 
+// Contiene elementos de LESS (como variables, mixins) además de elementos básicos
+// del diseño, como tipografías, tamaños, etc.
+
+// Tamaño fuente inicial
+@size: 15px;
+
 // Colores base
 @color: #585858;
 @gris: #9E9E9E;
@@ -22,16 +28,37 @@
 @results: #795548;
 
 // Mensajes
-@success: @aside;
-@warning: @pagecolor;
-@error: @video;
+@success: #1B5E20;
+@warning: #FF6F00;
+@error: #b71c1c;
 
 // Icono de entradas
-.icon( @color ) {
-	
+.icon(@color) {
+	background-color: @color;
 }
 
-// Fondo iconos (descontinuado)
-.background(@color) {
-    background-color: @color;
+// Contenedor
+.container(@num) {
+	width: calc(100% / @num);
+}
+
+// Tipografía
+@import url('https://fonts.googleapis.com/css?family=PT+Mono|Titillium+Web');
+
+/*
+	1.0 Valores Generales
+*/
+ html {
+	 font-size: @size;
+	 font-family: 'Titillium Web', sans-serif;
+	 line-height: 1.15;
+ }
+
+ body {
+	 margin: 0;
+ }
+
+ h1 {
+	font-size: 2rem;
+	margin: 0.67rem 0;
 }
