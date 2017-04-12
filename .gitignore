@@ -1,3 +1,4 @@
 .vscode/
 travis.log.txt
 *.backup.*
+ROADMAP.md
