@@ -2,7 +2,7 @@
 	Theme Name: Coki
 	Theme URI: http://ejner.galaz.me/
 	Description: Blogs verdaderamente personales.
-	Version: 1.0.0-beta.6-build.72
+	Version: 1.0.0-beta.6-build.74
 	Author: Ejner Galaz
 	Author URI: http://galaz.me/
 	License: GNU General Public License v2
@@ -15,17 +15,30 @@
 @set-font-size: 17px;
 
 // Colores
-@color-default: #2980b9;
-@color-text: darken(@color-default, 70%);
-@color-text-link: @color-text+@color-default;
+@color-text-base: #181818;
+@color-text-link: #2980b9;
+@color-text-hover: #2c3e50;
+@color-code-text: #fff;
+@color-format-link: #2196F3;
+@color-format-status: #00BCD4;
+@color-format-quote: #607D8B;
+@color-format-image: #FF5722;
+@color-format-gallery: #E91E63;
+@color-format-audio: #3F51B5;
+@color-format-video: #f44336;
+@color-format-aside: #4CAF50;
+@color-format-chat: #9C27B0;
+@color-format-standard: #009688;
+@color-format-sticky: #FFC107;
+@color-format-page: #FF9800;
+@color-format-search: #795548;
+@color-message-success: #1B5E20;
+@color-message-warning: #FF6F00;
+@color-message-error: #b71c1c;
 
 // Mixins
 .mixin-icon(@color) {
 	background-color: @color;
-}
-
-.mixin-columns(@num) {
-	width: calc(100% / @num);
 }
 
 // Tipografía
@@ -38,7 +51,7 @@ html {
 	 font-size: @set-font-size;
 	 font-family: 'Titillium Web', sans-serif;
 	 line-height: 1.5rem;
-	 color: @color-text;
+	 color: @color-text-base;
  }
 
 body {
@@ -95,8 +108,8 @@ samp {
 
 pre,
 code {
-	color: darken(@color-default, 50%);
-	background-color: lighten(@color-default, 50%);
+	color: @color-code-text;
+	background-color: @color-format-standard;
     padding: 0.2rem;
 }
 
@@ -107,29 +120,9 @@ a {
 	transition: color .3s linear;
 
 	&:hover {
-		color: spin(@color-text-link, 180);
+		color: @color-text-hover;
 		outline-width: 0;
 	}
-
-	img.alignright {
-        float: right;
-        margin: 0.5rem 0 1.17rem 1.17rem;
-    }
-
-    img.alignnone {
-        margin: 0.5rem 1.17rem 1.17rem 0;
-    }
-
-    img.alignleft {
-        float: left;
-        margin: 0.5rem 1.17rem 1.17rem 0;
-    }
-
-    img.aligncenter {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
 }
 
 abbr[title] {
@@ -139,6 +132,39 @@ abbr[title] {
 b,
 strong {
 	font-weight: bolder;
+}
+
+figure {
+	max-width: 90%;
+}
+
+img {
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+
+	.alignright {
+        //float: right;
+        margin: 0.5rem 0 1.17rem 1.17rem;
+    }
+
+    .alignnone {
+        margin: 0.5rem 1.17rem 1.17rem 0;
+    }
+
+    .alignleft {
+        //float: left;
+        margin: 0.5rem 1.17rem 1.17rem 0;
+    }
+
+    .aligncenter {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 small {
@@ -250,21 +276,35 @@ table {
 .wrap {
     width: 85%;
     margin: 0 auto;
+	display: block;
+	position: relative;
 }
 
-.columns {
-	display: inline-block;
+.flex {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	flex-basis: 1rem;
 	padding: 1%;
+	border: 1px #000 solid;
 
 	&.small {
-		.mixin-columns(3);
+		flex-grow: 1;
+		order: 1;
 	}
 
 	&.medium {
-		.mixin-columns(2);
+		flex-grow: 2;
+		order: 3;
 	}
 
 	&.big {
-		.mixin-columns(1);
+		flex-grow: 3;
+		order: 2;
 	}
+}
+
+.nav {
+	position: absolute;
 }

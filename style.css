@@ -2,7 +2,7 @@
 	Theme Name: Coki
 	Theme URI: http://ejner.galaz.me/
 	Description: Blogs verdaderamente personales.
-	Version: 1.0.0-beta.6-build.72
+	Version: 1.0.0-beta.6-build.74
 	Author: Ejner Galaz
 	Author URI: http://galaz.me/
 	License: GNU General Public License v2
@@ -18,7 +18,7 @@ html {
   font-size: 17px;
   font-family: 'Titillium Web', sans-serif;
   line-height: 1.5rem;
-  color: #000000;
+  color: #181818;
 }
 body {
   margin: 0;
@@ -64,8 +64,8 @@ samp {
 }
 pre,
 code {
-  color: #000000;
-  background-color: #e7f2fa;
+  color: #fff;
+  background-color: #009688;
   padding: 0.2rem;
 }
 a {
@@ -75,24 +75,8 @@ a {
   transition: color .3s linear;
 }
 a:hover {
-  color: #b96229;
+  color: #2c3e50;
   outline-width: 0;
-}
-a img.alignright {
-  float: right;
-  margin: 0.5rem 0 1.17rem 1.17rem;
-}
-a img.alignnone {
-  margin: 0.5rem 1.17rem 1.17rem 0;
-}
-a img.alignleft {
-  float: left;
-  margin: 0.5rem 1.17rem 1.17rem 0;
-}
-a img.aligncenter {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 abbr[title] {
   text-decoration: underline dotted;
@@ -100,6 +84,31 @@ abbr[title] {
 b,
 strong {
   font-weight: bolder;
+}
+figure {
+  max-width: 90%;
+}
+img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+}
+img .alignright {
+  margin: 0.5rem 0 1.17rem 1.17rem;
+}
+img .alignnone {
+  margin: 0.5rem 1.17rem 1.17rem 0;
+}
+img .alignleft {
+  margin: 0.5rem 1.17rem 1.17rem 0;
+}
+img .aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 small {
   font-size: 80%;
@@ -192,17 +201,30 @@ table {
 .wrap {
   width: 85%;
   margin: 0 auto;
+  display: block;
+  position: relative;
 }
-.columns {
-  display: inline-block;
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-basis: 1rem;
   padding: 1%;
+  border: 1px #000 solid;
 }
-.columns.small {
-  width: calc(33.33333333%);
+.flex.small {
+  flex-grow: 1;
+  order: 1;
 }
-.columns.medium {
-  width: calc(50%);
+.flex.medium {
+  flex-grow: 2;
+  order: 3;
 }
-.columns.big {
-  width: calc(100%);
+.flex.big {
+  flex-grow: 3;
+  order: 2;
+}
+.nav {
+  position: absolute;
 }

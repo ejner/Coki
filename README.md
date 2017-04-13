@@ -1,4 +1,4 @@
-# Coki 1.0.0 - Beta 6 (Build 73)
+# Coki 1.0.0 - Beta 6 (Build 74)
 [![Build Status](https://travis-ci.org/ejner/Coki.svg?branch=master)](https://travis-ci.org/ejner/Coki) [![Code Climate](https://lima.codeclimate.com/github/ejner/Coki/badges/gpa.svg)](https://lima.codeclimate.com/github/ejner/Coki)
 
 Blogs verdaderamente personales. Tema para WordPress 4.7 o superior.
@@ -37,7 +37,12 @@ Las versiones beta son un conjunto de builds con una hoja de ruta en común. Pue
 ## Registro de cambios
 *Nota*: el registro de cambios también está disponible en los comentarios de cada build.
 
-## Build 73
+### Build 74
+- Corregido error en las notas de cambio :)
+- Actualizado número de build para style.css
+- Avance en el diseño final del sitio
+
+### Build 73
 - Inicio del diseño definitivo
 - Integrado normalize.css en el CSS del sitio
 - Eliminada carpeta `less` (incluyendo su contenido)

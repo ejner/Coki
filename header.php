@@ -22,10 +22,10 @@
 		<div class="wrap">
 
 			<!-- .header -->
-			<header class="header">
+			<header class="header flex big">
 
 					<!-- .logo -->
-					<div class="logo">
+					<div class="logo flex small">
 						
 							<?php
 							if ( has_custom_logo() ) {
@@ -48,7 +48,7 @@
 					<!-- /.logo -->
 
 					<!-- .search -->
-					<div class="search">
+					<div class="search flex medium">
 						<?php get_search_form(); ?>
 					</div>
 					<!-- /.search -->
